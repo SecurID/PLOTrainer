@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    PLO Trainer 0.1
+                    PLO Trainer v0.1
                 </div>
             </div>
         </div>
