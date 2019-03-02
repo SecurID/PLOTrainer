@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/createSituation', 'SituationController@showCreateSituation')->name('createSituation');
+
+Route::post('processFiles', 'SituationController@uploadFile');
