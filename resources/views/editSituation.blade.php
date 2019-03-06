@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Situations</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    #TODO: Show Basic Statistics in Dashboard
+                    <ul class="list-group">
+                        @foreach ($situations as $situation)
+                            <li class="list-group-item">{{ $situation->name }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

@@ -22,3 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/createSituation', 'SituationController@showCreateSituation')->name('createSituation');
 
 Route::post('processFiles', 'SituationController@uploadFile');
+
+Route::get('/editSituations', 'SituationController@showEditSituation')->name('editSituation');
+
+Route::get('/selectSituations', 'SituationController@selectSituation')->name('selectSituation');
+
+Route::get('/randomSituations', 'SituationController@randomSituation')->name('randomSituation');

@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    #TODO: Show Basic Statistics in Dashboard
+                    <form action="/selectSituations" enctype="multipart/form-data" method="POST">
+                        <button>Training starten</button>
+                        {{ csrf_field() }}
+                    </form>
                 </div>
             </div>
         </div>

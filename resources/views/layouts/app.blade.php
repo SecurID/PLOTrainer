@@ -58,17 +58,17 @@
                 <ul class="list-unstyled components">
                     <p><b>Training</b></p>
                     <li>
-                        <a href="#">Random Situations</a>
+                        <a href="{{ route('randomSituation') }}">Random Situations</a>
                     </li>
                     <li>
-                        <a href="#">Choose Situations</a>
+                        <a href="{{ route('selectSituation') }}">Choose Situations</a>
                     </li>
                     <p><b>Settings</b></p>
                     <li>
                         <a href="{{ route('createSituation') }}">Create new Situation</a>
                     </li>
                     <li>
-                        <a href="#">Edit Situation</a>
+                        <a href="{{ route('editSituation') }}">Edit Situation</a>
                     </li>
                     <p><b>Statistics</b></p>
                     <li>

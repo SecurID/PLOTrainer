@@ -64,4 +64,39 @@ class SituationController extends Controller
         return view('createSituation', ['success' => 'Files will be processed']);
     }
 
+    /**
+     * Show the edit Situation Page
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function showEditSituation()
+    {
+        $situations = Situation::all();
+
+        return view('editSituation', ['situations' => $situations]);
+    }
+
+    /**
+     * Show the select Situation Page
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function selectSituation()
+    {
+        $situations = Situation::all();
+
+        return view('selectSituation', ['situations' => $situations]);
+    }
+
+    /**
+     * Show the select Situation Page
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function randomSituation()
+    {
+        $situations = Situation::all();
+
+        return view('randomSituation', ['situations' => $situations]);
+    }
 }
