@@ -12,4 +12,13 @@ class Situation extends Model
      * @var array
      */
     protected $fillable = ['name'];
+
+    public function actions()
+    {
+        return $this->belongsToMany('App\Action', 'hands_to_situations_to_actions')->withPivot('percentage');
+    }
+    public function hands()
+    {
+        return $this->belongsToMany('App\Hand', 'hands_to_situations_to_actions')->withPivot('percentage');
+    }
 }

@@ -13,6 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @isset($success)
+                        <div class="alert alert-success" role="alert">
+                            {{ $success }}
+                        </div>
+                    @endif
 
                         <form action="/processFiles" enctype="multipart/form-data" method="POST">
                             <p>
@@ -22,8 +27,18 @@
                                 </label>
                             </p>
                             <p>
-                                <label for="file">
-                                    <input type="file" name="range" id="range">
+                                <label for="file"> Raise
+                                    <input type="file" name="rangeRaise" id="rangeRaise">
+                                </label>
+                            </p>
+                            <p>
+                                <label for="file"> Call
+                                    <input type="file" name="rangeCall" id="rangeCall">
+                                </label>
+                            </p>
+                            <p>
+                                <label for="file"> Fold
+                                    <input type="file" name="rangeFold" id="rangeFold">
                                 </label>
                             </p>
                             <button>Hochladen</button>
