@@ -26,12 +26,13 @@
                                 </li>
                             @endforeach
                         </ul>
-                        <button>Training starten</button>
-                        {{ csrf_field() }}
+                        <div class="m-3 d-flex justify-content-center"><button class="btn btn-primary" id="startTraining">Start Training</button>
+                            {{ csrf_field() }}</div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection

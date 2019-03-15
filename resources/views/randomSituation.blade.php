@@ -15,7 +15,7 @@
                     @endif
 
                     <form id="startTrainingForm" action="" enctype="multipart/form-data" method="POST">
-                        <div class="d-flex justify-content-center"><button class="btn btn-primary" id="startTraining">Start Training</button>
+                        <div class="m-3 d-flex justify-content-center"><button class="btn btn-primary" id="startTraining">Start Training</button>
                         {{ csrf_field() }}</div>
                     </form>
                     <div class="d-none" id="showTask">
@@ -29,14 +29,23 @@
                             <div><img id="card4" src="" width="50px" height="100px" ></div>
                         </div>
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
-                            <button class="btn btn-danger" id="fold">Fold</button>
-                            <p class="d-none" id="labelFold"></p>
-                            <button class="btn btn-warning"id="call">Call</button>
-                            <p class="d-none" id="labelCall"></p>
-                            <button class="btn btn-success"id="raise">Raise</button>
-                            <p class="d-none" id="labelRaise"></p>
+                            <button class="m-2 btn btn-danger btn-lg" id="fold">Fold</button>
+                            <button class="m-2 btn btn-warning btn-lg"id="call">Call</button>
+                            <button class="m-2 btn btn-success btn-lg"id="raise">Raise</button>
                         </div>
-                        <div class="d-flex justify-content-center" style="margin-top: 50px;">
+                        <div class="d-flex justify-content-center">
+                            <table style="border: none">
+                                <tr>
+                                    <td class="text-center" width="100px"><p class="d-none" id="labelFold"></p></td>
+                                    <td class="text-center" width="100px"><p class="d-none" id="labelCall"></p></td>
+                                    <td class="text-center" width="100px"><p class="d-none" id="labelRaise"></p></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p id="info" class="display-4"></p>
+                        </div>
+                        <div class="m-3 d-flex justify-content-center" style="margin-top: 50px;">
                             <button class="btn btn-primary d-none" id="next">Next</button>
                         </div>
                     </div>
@@ -83,6 +92,14 @@
             $('#labelCall').addClass('d-none');
             $('#labelRaise').addClass('d-none');
             $('#next').addClass('d-none');
+            document.getElementById("call").disabled = false;
+            document.getElementById("raise").disabled = false;
+            document.getElementById("fold").disabled = false;
+            $("#raise").removeClass('active');
+            $("#fold").removeClass('active');
+            $("#call").removeClass('active');
+            $('#info').html('');
+
 
             $.ajaxSetup({
                 headers: {
@@ -111,11 +128,28 @@
             $('#labelFold').removeClass('d-none');
             $('#labelCall').removeClass('d-none');
             $('#labelRaise').removeClass('d-none');
+            document.getElementById("raise").disabled = true;
+            document.getElementById("call").disabled = true;
+            document.getElementById("fold").disabled = true;
 
             if(document.getElementById("labelFold").innerHTML >= document.getElementById("labelRaise").innerHTML && document.getElementById("labelFold").innerHTML >= document.getElementById("labelCall").innerHTML){
                 correct = true;
-            }
+                $('#info').html('Correct');
+                $('#info').css('color', 'green');
+                $("#fold").css('opacity', '1');
 
+            }else{
+                if(document.getElementById("labelCall").innerHTML >= document.getElementById("labelRaise").innerHTML){
+                    $("#call").css('opacity', '1');
+                    $('#info').html('Wrong');
+                    $('#info').css('color', 'red');
+                }
+                if(document.getElementById("labelRaise").innerHTML >= document.getElementById("labelCall").innerHTML){
+                    $("#raise").css('opacity', '1');
+                    $('#info').html('Wrong');
+                    $('#info').css('color', 'red');
+                }
+            }
 
             $.ajaxSetup({
                 headers: {
@@ -138,14 +172,32 @@
         jQuery('#raise').click(function (e) {
             var correct = false;
 
-            if(document.getElementById("labelRaise").innerHTML >= document.getElementById("labelFold").innerHTML && document.getElementById("labelRaise").innerHTML >=document.getElementById("labelCall").innerHTML){
-                correct = true;
-            }
-
             e.preventDefault();
             $('#labelFold').removeClass('d-none');
             $('#labelCall').removeClass('d-none');
             $('#labelRaise').removeClass('d-none');
+            document.getElementById("raise").disabled = true;
+            document.getElementById("call").disabled = true;
+            document.getElementById("fold").disabled = true;
+
+            if(document.getElementById("labelRaise").innerHTML >= document.getElementById("labelFold").innerHTML && document.getElementById("labelRaise").innerHTML >=document.getElementById("labelCall").innerHTML){
+                correct = true;
+                $('#info').html('Correct');
+                $('#info').css('color', 'green');
+                $("#raise").css('opacity', '1');
+            }else{
+                if(document.getElementById("labelCall").innerHTML >= document.getElementById("labelFold").innerHTML){
+                    $("#call").css('opacity', '1');
+                    $('#info').html('Wrong');
+                    $('#info').css('color', 'red');
+                }
+                if(document.getElementById("labelFold").innerHTML >= document.getElementById("labelCall").innerHTML){
+                    $("#fold").css('opacity', '1');
+                    $('#info').html('Wrong');
+                    $('#info').css('color', 'red');
+                }
+            }
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -167,16 +219,32 @@
         jQuery('#call').click(function (e) {
             var correct = false;
 
+            document.getElementById("raise").disabled = true;
+            document.getElementById("call").disabled = true;
+            document.getElementById("fold").disabled = true;
+
             if(document.getElementById("labelCall").innerHTML >= document.getElementById("labelFold").innerHTML && document.getElementById("labelCall").innerHTML >= document.getElementById("labelRaise").innerHTML){
                 correct = true;
+                $('#info').html('Correct');
+                $('#info').css('color', 'green');
+                $("#call").css('opacity', '1');
+            }else{
+                if(document.getElementById("labelRaise").innerHTML >= document.getElementById("labelFold").innerHTML){
+                    $("#call").css('opacity', '1');
+                    $('#info').html('Wrong');
+                    $('#info').css('color', 'red');
+                }
+                if(document.getElementById("labelFold").innerHTML >= document.getElementById("labelRaise").innerHTML){
+                    $("#fold").css('opacity', '1');
+                    $('#info').html('Wrong');
+                    $('#info').css('color', 'red');
+                }
             }
 
             e.preventDefault();
             $('#labelFold').removeClass('d-none');
             $('#labelCall').removeClass('d-none');
             $('#labelRaise').removeClass('d-none');
-
-
 
 
             $.ajaxSetup({

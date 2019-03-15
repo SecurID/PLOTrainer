@@ -33,3 +33,5 @@ Route::get('/getHand', 'HandController@getHand')->name('getHand');
 
 Route::get('/getHandSituations', 'HandController@getHandSituations')->name('getHandSituations');
 
+Route::get('/deleteSituation/{id}', 'SituationController@deleteSituation')->name('deleteSituation');
+

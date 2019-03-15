@@ -13,12 +13,13 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <ul class="list-group">
-                        @foreach ($situations as $situation)
-                            <li class="list-group-item">{{ $situation->name }}</li>
-                        @endforeach
-                    </ul>
+                    <form action="/processFiles" enctype="multipart/form-data" method="GET">
+                        <ul class="list-group">
+                            @foreach ($situations as $situation)
+                                <li class="list-group-item">{{ $situation->name }}<button class="btn btn-danger" id="situation{{$situation->id}}">Delete</button></li>
+                            @endforeach
+                        </ul>
+                    </form>
                 </div>
             </div>
         </div>

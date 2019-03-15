@@ -18,6 +18,11 @@
     max-width: 250px;
     min-height: 100vh;
 }
+@media (max-width: 768px) {
+    #sidebar {
+        display: none !important;
+    }
+}
 /*
     ADDITIONAL DEMO STYLE, NOT IMPORTANT TO MAKE THINGS WORK BUT TO MAKE IT A BIT NICER :)
 */

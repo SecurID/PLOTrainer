@@ -100,4 +100,20 @@ class SituationController extends Controller
 
         return view('randomSituation', ['user_id' => $user->id]);
     }
+
+    /**
+     * Deletes a situation
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function deleteSituation($idSituation)
+    {
+        $situation = Situation::find($idSituation);
+        $situation->active = 0;
+        $situation->save();
+
+        $situations = Situation::where('active', 1)->get();
+
+        return view('editSituation', ['situations' => $situations]);
+    }
 }

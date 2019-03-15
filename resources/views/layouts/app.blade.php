@@ -54,6 +54,9 @@
                                 @csrf
                             </form>
                         </li>
+                        <li>
+                            <a href="{{ route('home') }}">Home</a>
+                        </li>
                 </ul>
                 <ul class="list-unstyled components">
                     <p><b>Training</b></p>

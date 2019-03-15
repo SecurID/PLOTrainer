@@ -23,25 +23,25 @@
                             <p>
                                 Situation
                                 <label for="name">
-                                    <input type="text" name="name" id="name">
+                                    <input type="text" class="form-control" name="name" id="name">
                                 </label>
                             </p>
                             <p>
-                                <label for="file"> Raise
-                                    <input type="file" name="rangeRaise" id="rangeRaise">
+                                <label for="rangeRaise"> Raise
+                                    <input type="file" class="form-control-file" name="rangeRaise" id="rangeRaise">
                                 </label>
                             </p>
                             <p>
-                                <label for="file"> Call
-                                    <input type="file" name="rangeCall" id="rangeCall">
+                                <label for="rangeCall"> Call
+                                    <input type="file" class="form-control-file" name="rangeCall" id="rangeCall">
                                 </label>
                             </p>
                             <p>
-                                <label for="file"> Fold
-                                    <input type="file" name="rangeFold" id="rangeFold">
+                                <label for="rangeFold"> Fold
+                                    <input type="file" class="form-control-file" name="rangeFold" id="rangeFold">
                                 </label>
                             </p>
-                            <button>Hochladen</button>
+                            <button class="btn btn-primary btn-lg">Hochladen</button>
                             {{ csrf_field() }}
                         </form>
                 </div>
