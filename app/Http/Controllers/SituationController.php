@@ -9,6 +9,7 @@ use App\Situation;
 use Faker\Provider\File;
 use Hamcrest\NullDescription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -41,7 +42,7 @@ class SituationController extends Controller
     {
         // process SituationName
         $name = $request->input('name');
-        $situation = Situation::firstOrCreate(['name' => $name]);
+        $situation = Situation::firstOrCreate(['name' => $name, 'active' => 1]);
 
         //process RaiseRange
         $action = Action::where('name', 'Raise')->first();
@@ -61,7 +62,7 @@ class SituationController extends Controller
 
         ProcessRangeFiles::dispatch($action, $situation, $path);
 
-        return view('createSituation', ['success' => 'Files will be processed']);
+        return view('createSituation', ['success' => 'Files will be processed. Duration: 30 Minutes']);
     }
 
     /**
@@ -71,7 +72,7 @@ class SituationController extends Controller
      */
     public function showEditSituation()
     {
-        $situations = Situation::all();
+        $situations = Situation::where('active', 1)->get();
 
         return view('editSituation', ['situations' => $situations]);
     }
@@ -83,9 +84,9 @@ class SituationController extends Controller
      */
     public function selectSituation()
     {
-        $situations = Situation::all();
+        $situations = Situation::where('active', 1)->get();
 
-        return view('selectSituation', ['situations' => $situations]);
+        return view('selectSituation', ['situations' => $situations ]);
     }
 
     /**
@@ -95,8 +96,8 @@ class SituationController extends Controller
      */
     public function randomSituation()
     {
-        $situations = Situation::all();
+        $user = Auth::user();
 
-        return view('randomSituation', ['situations' => $situations]);
+        return view('randomSituation', ['user_id' => $user->id]);
     }
 }

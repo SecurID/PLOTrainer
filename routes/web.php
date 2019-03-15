@@ -28,3 +28,8 @@ Route::get('/editSituations', 'SituationController@showEditSituation')->name('ed
 Route::get('/selectSituations', 'SituationController@selectSituation')->name('selectSituation');
 
 Route::get('/randomSituations', 'SituationController@randomSituation')->name('randomSituation');
+
+Route::get('/getHand', 'HandController@getHand')->name('getHand');
+
+Route::get('/getHandSituations', 'HandController@getHandSituations')->name('getHandSituations');
+
