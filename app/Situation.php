@@ -11,7 +11,7 @@ class Situation extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'active'];
 
     public function actions()
     {
