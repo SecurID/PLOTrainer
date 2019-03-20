@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Action;
 use App\Hand;
 use App\Situation;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -59,8 +60,9 @@ class ProcessRangeFiles implements ShouldQueue
 
         $hands = Hand::all();
 
-        $content = Storage::disk('local')->get($path);
-        foreach (explode(",", $content) as $key=>$line){
+        $content = json_decode(Storage::disk('local')->get($path));
+
+        foreach ($content as $key=>$line){
             $array[$key] = explode('@', $line);
             foreach($hands as $hand){
                 if($hand->hand == $array[$key][0]){
@@ -69,7 +71,7 @@ class ProcessRangeFiles implements ShouldQueue
                 }
             }
             DB::table('hands_to_situations_to_actions')->insert(
-                ['hand_id' => $found->id, 'action_id' => $action->id, 'situation_id' => $situation->id, 'percentage' => $array[$key][1]]
+                ['hand_id' => $found->id, 'action_id' => $action->id, 'situation_id' => $situation->id, 'percentage' => $array[$key][1], 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()]
             );
         }
         Log::info('File Processing finished');

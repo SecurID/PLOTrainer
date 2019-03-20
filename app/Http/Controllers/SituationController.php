@@ -9,6 +9,7 @@ use App\Situation;
 use Faker\Provider\File;
 use Hamcrest\NullDescription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -48,19 +49,46 @@ class SituationController extends Controller
         $action = Action::where('name', 'Raise')->first();
         $path = $request->file('rangeRaise')->store('ranges');
 
-        ProcessRangeFiles::dispatch($action, $situation, $path);
+        //Split Files
+        $content = Storage::disk('local')->get($path);
+        $array = explode(",", $content);
+        $arrayFinal = array_chunk($array, 5000);
+
+        foreach($arrayFinal as $arrayJob){
+            $filename = 'ranges/RaiseFile'.uniqid().'.txt';
+            Storage::disk('local')->put($filename, json_encode($arrayJob));
+            ProcessRangeFiles::dispatch($action, $situation, $filename);
+        }
 
         //process CallRange
         $action = Action::where('name', 'Call')->first();
         $path = $request->file('rangeCall')->store('ranges');
 
-        ProcessRangeFiles::dispatch($action, $situation, $path);
+        //Split Files
+        $content = Storage::disk('local')->get($path);
+        $array = explode(",", $content);
+        $arrayFinal = array_chunk($array, 5000);
 
-        //process CallRange
+        foreach($arrayFinal as $arrayJob){
+            $filename = 'ranges/CallFile'.uniqid().'.txt';
+            Storage::disk('local')->put($filename, json_encode($arrayJob));
+            ProcessRangeFiles::dispatch($action, $situation, $filename);
+        }
+
+        //process FoldRange
         $action = Action::where('name', 'Fold')->first();
         $path = $request->file('rangeFold')->store('ranges');
 
-        ProcessRangeFiles::dispatch($action, $situation, $path);
+        //Split Files
+        $content = Storage::disk('local')->get($path);
+        $array = explode(",", $content);
+        $arrayFinal = array_chunk($array, 5000);
+
+        foreach($arrayFinal as $arrayJob){
+            $filename = 'ranges/FoldFile'.uniqid().'.txt';
+            Storage::disk('local')->put($filename, json_encode($arrayJob));
+            ProcessRangeFiles::dispatch($action, $situation, $filename);
+        }
 
         return view('createSituation', ['success' => 'Files will be processed. Duration: 30 Minutes']);
     }
