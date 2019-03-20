@@ -52,7 +52,7 @@ class SituationController extends Controller
         //Split Files
         $content = Storage::disk('local')->get($path);
         $array = explode(",", $content);
-        $arrayFinal = array_chunk($array, 5000);
+        $arrayFinal = array_chunk($array, 1000);
 
         foreach($arrayFinal as $arrayJob){
             $filename = 'ranges/RaiseFile'.uniqid().'.txt';
@@ -67,7 +67,7 @@ class SituationController extends Controller
         //Split Files
         $content = Storage::disk('local')->get($path);
         $array = explode(",", $content);
-        $arrayFinal = array_chunk($array, 5000);
+        $arrayFinal = array_chunk($array, 1000);
 
         foreach($arrayFinal as $arrayJob){
             $filename = 'ranges/CallFile'.uniqid().'.txt';
@@ -82,7 +82,7 @@ class SituationController extends Controller
         //Split Files
         $content = Storage::disk('local')->get($path);
         $array = explode(",", $content);
-        $arrayFinal = array_chunk($array, 5000);
+        $arrayFinal = array_chunk($array, 1000);
 
         foreach($arrayFinal as $arrayJob){
             $filename = 'ranges/FoldFile'.uniqid().'.txt';
