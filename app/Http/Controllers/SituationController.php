@@ -90,7 +90,7 @@ class SituationController extends Controller
             ProcessRangeFiles::dispatch($action, $situation, $filename);
         }
 
-        return view('createSituation', ['success' => 'Files will be processed. Duration: 30 Minutes']);
+        return view('createSituation', ['success' => 'Files will be processed.']);
     }
 
     /**

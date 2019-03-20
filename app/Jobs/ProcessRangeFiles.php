@@ -49,7 +49,6 @@ class ProcessRangeFiles implements ShouldQueue
      */
     public function handle()
     {
-        Log::info('File Processing started');
         $array = null;
         $content = null;
         $found = null;
@@ -57,6 +56,9 @@ class ProcessRangeFiles implements ShouldQueue
         $path = $this->path;
         $action = $this->action;
         $situation = $this->situation;
+        $insertarray = [];
+
+        Log::info('File Processing started: '.$path);
 
         $hands = Hand::all();
 
@@ -70,10 +72,24 @@ class ProcessRangeFiles implements ShouldQueue
                     break;
                 }
             }
-            DB::table('hands_to_situations_to_actions')->insert(
-                ['hand_id' => $found->id, 'action_id' => $action->id, 'situation_id' => $situation->id, 'percentage' => $array[$key][1], 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()]
-            );
+            $insertarray[] = ['hand_id' => $found->id, 'action_id' => $action->id, 'situation_id' => $situation->id, 'percentage' => $array[$key][1], 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()];
         }
-        Log::info('File Processing finished');
+
+        DB::table('hands_to_situations_to_actions')->insert($insertarray);
+
+        Log::info('File Processing finished: '.$path);
+    }
+
+    /**
+     * The job failed to process.
+     *
+     * @param  Exception  $exception
+     * @return void
+     */
+    public function failed(\Exception $exception)
+    {
+        $path = $this->path;
+        Log::info('File Processing failed: '.$path);
+        Log::info($exception);
     }
 }
