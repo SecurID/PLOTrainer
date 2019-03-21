@@ -53,24 +53,28 @@ class AnswerController extends Controller
         $insertarray = [];
 
         Log::info('File Processing started: '.$path);
+        try {
+            $hands = Hand::all();
 
-        $hands = Hand::all();
+            $content = json_decode(Storage::disk('local')->get($path));
 
-        $content = json_decode(Storage::disk('local')->get($path));
-
-        foreach ($content as $key=>$line){
-            $array[$key] = explode('@', $line);
-            foreach($hands as $hand){
-                if($hand->hand == $array[$key][0]){
-                    $found = $hand;
-                    break;
+            foreach ($content as $key => $line) {
+                $array[$key] = explode('@', $line);
+                foreach ($hands as $hand) {
+                    if ($hand->hand == $array[$key][0]) {
+                        $found = $hand;
+                        break;
+                    }
                 }
+                $insertarray[] = ['hand_id' => $found->id, 'action_id' => $action->id, 'situation_id' => $situation->id, 'percentage' => $array[$key][1], 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()];
             }
-            $insertarray[] = ['hand_id' => $found->id, 'action_id' => $action->id, 'situation_id' => $situation->id, 'percentage' => $array[$key][1], 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()];
+
+            DB::table('hands_to_situations_to_actions')->insert($insertarray);
+        }catch (\Exception $e){
+            Log::info('Error: '.$e);
         }
 
-        DB::table('hands_to_situations_to_actions')->insert($insertarray);
-
         Log::info('File Processing finished: '.$path);
+
     }
 }
