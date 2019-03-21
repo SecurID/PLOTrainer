@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/answer', 'AnswerController@saveAnswer')->name('saveAnswer');
+
+Route::get('/processFile', 'AnswerController@processSpecificFile')->name('processSpecificFile');

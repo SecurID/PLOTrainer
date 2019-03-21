@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class SituationController extends Controller
@@ -144,4 +145,7 @@ class SituationController extends Controller
 
         return view('editSituation', ['situations' => $situations]);
     }
+
+
+
 }
