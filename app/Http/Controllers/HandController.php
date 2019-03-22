@@ -27,7 +27,6 @@ class HandController extends Controller
 
         do {
             $randomHandNumber = rand(0, 270725);
-            $randomHandNumber = 140; //TODO Delete Testing Variable
 
             $hand = Hand::find($randomHandNumber);
 
@@ -96,7 +95,6 @@ class HandController extends Controller
         }
         do {
             $randomHandNumber = rand(0, 270725);
-            $randomHandNumber = 140; //TODO Delete Testing Variable
 
             $hand = Hand::find($randomHandNumber);
 
