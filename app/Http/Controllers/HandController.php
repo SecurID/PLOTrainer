@@ -77,8 +77,13 @@ class HandController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function getHandSituations()
+    public function getHandSituations(Request $request)
     {
+        $situationId = $request->all();
+        foreach($situationId as $situation){
+            $arraySituations[] = $situation;
+        }
+
         $situationName = null;
         $foldPercentage = 0;
         $callPercentage = 0;
@@ -86,13 +91,9 @@ class HandController extends Controller
         $handName = null;
         $flag = true;
 
+        $situation = Situation::find($arraySituations)->shuffle();
+        $situation = $situation[0];
 
-
-        if(isset($situationId)){
-            $situation = Situation::find($situationId);
-        }else{
-            $situation = Situation::inRandomOrder()->where('active', 1)->first();
-        }
         do {
             $randomHandNumber = rand(0, 270725);
 

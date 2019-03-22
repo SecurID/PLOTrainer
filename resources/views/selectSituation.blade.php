@@ -13,13 +13,13 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form action="/selectSituationsTraining" enctype="multipart/form-data" method="POST">
+                        <form action="/selectSituationsTraining" enctype="multipart/form-data" method="GET">
                         <ul class="list-group">
                             @foreach ($situations as $situation)
                                 <li class="list-group-item">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="{{$situation->id}}" id="situation{{$loop->index}}">
-                                        <label class="form-check-label" for="situation{{$loop->index}}">
+                                        <input class="form-check-input" name="situation[]" type="checkbox" value="{{$situation->id}}" id="situation{{$situation->id}}">
+                                        <label class="form-check-label" for="situation{{$situation->id}}">
                                             {{ $situation->name }}
                                         </label>
                                     </div>

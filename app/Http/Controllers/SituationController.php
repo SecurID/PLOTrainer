@@ -123,6 +123,19 @@ class SituationController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function selectSituationTraining(Request $request)
+    {
+        $situations = $request->input('situation');
+        $user = Auth::user();
+
+        return view('selectSituationTraining', ['situations' => $situations, 'user_id' => $user->id]);
+    }
+
+    /**
+     * Show the select Situation Page
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function randomSituation()
     {
         $user = Auth::user();
