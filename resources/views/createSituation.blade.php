@@ -18,6 +18,11 @@
                             {{ $success }}
                         </div>
                     @endif
+                    @isset($failed)
+                        <div class="alert alert-danger" role="alert">
+                            {{ $failed }}
+                        </div>
+                        @endif
 
                         <form action="/processFiles" enctype="multipart/form-data" method="POST">
                             <p>
