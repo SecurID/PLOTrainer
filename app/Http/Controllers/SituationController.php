@@ -6,6 +6,7 @@ use App\Action;
 use App\Hand;
 use App\Jobs\ChangeSituationStatus;
 use App\Jobs\ProcessRangeFiles;
+use App\Mail\JobsFinished;
 use App\Situation;
 use Faker\Provider\File;
 use Hamcrest\NullDescription;
@@ -14,6 +15,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class SituationController extends Controller
@@ -108,6 +110,9 @@ class SituationController extends Controller
         }
 
         ChangeSituationStatus::dispatch($situation, 1);
+
+        Mail::to("yannick.kupferschmidt@googlemail.com")
+            ->queue(new JobsFinished($situation));
 
         return view('createSituation', ['success' => 'Files will be processed.']);
     }
