@@ -13,16 +13,40 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form action="/processFiles" enctype="multipart/form-data" method="GET">
-                        <ul class="list-group">
-                            @foreach ($situations as $situation)
-                                <li class="list-group-item">{{ $situation->name }}<button class="btn btn-danger" id="situation{{$situation->id}}">Delete</button></li>
-                            @endforeach
-                        </ul>
-                    </form>
+                    <ul class="list-group">
+                        @foreach ($situations as $situation)
+                            <li class="list-group-item justify-content-between align-items-center d-flex" id="lisituation{{$situation->id}}">{{ $situation->name }}<button class="btn btn-danger" id="situation{{$situation->id}}">Delete</button></li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+</script>
+<script>
+jQuery(document).ready(function() {
+    @foreach($situations as $situation)
+    jQuery('#situation{{$situation->id}}').click(function (e) {
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        jQuery.ajax({
+            url: "{{ url('/deleteSituation/'.$situation->id) }}",
+            method: 'get',
+            success: function (result) {
+                location.reload();
+            }
+        });
+    });
+    @endforeach
+});
+</script>
 @endsection
+

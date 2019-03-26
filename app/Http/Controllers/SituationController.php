@@ -177,9 +177,9 @@ class SituationController extends Controller
         $situation->active = 0;
         $situation->save();
 
-        $situations = Situation::where('active', 1)->get();
-
-        return view('editSituation', ['situations' => $situations]);
+        return response()->json([
+            'success' => true
+        ]);
     }
 
 
