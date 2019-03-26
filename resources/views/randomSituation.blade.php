@@ -20,13 +20,13 @@
                     </form>
                     <div class="d-none" id="showTask">
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
-                            <div id="situationName"></div>
+                            <div id="situationName">Loading ...</div>
                         </div>
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
-                            <div><img id="card1" src="" width="50px" height="100px" style="float:left;"></div>
-                            <div><img id="card2" src="" width="50px" height="100px" style="float:left;"></div>
-                            <div><img id="card3" src="" width="50px" height="100px" style="float:left;"></div>
-                            <div><img id="card4" src="" width="50px" height="100px" ></div>
+                            <div><img id="card1" src="{{ asset('assets/cards/back.png') }}" width="50px" height="100px" style="float:left;"></div>
+                            <div><img id="card2" src="{{ asset('assets/cards/back.png') }}" width="50px" height="100px" style="float:left;"></div>
+                            <div><img id="card3" src="{{ asset('assets/cards/back.png') }}" width="50px" height="100px" style="float:left;"></div>
+                            <div><img id="card4" src="{{ asset('assets/cards/back.png') }}" width="50px" height="100px" ></div>
                         </div>
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
                             <button class="m-2 btn btn-danger btn-lg" id="fold">Fold</button>
@@ -87,6 +87,11 @@
         });
         jQuery('#next').click(function (e) {
             e.preventDefault();
+            document.getElementById("card1").src = "{{ asset('assets/cards/back.png') }}";
+            document.getElementById("card2").src = "{{ asset('assets/cards/back.png') }}";
+            document.getElementById("card3").src = "{{ asset('assets/cards/back.png') }}";
+            document.getElementById("card4").src = "{{ asset('assets/cards/back.png') }}";
+            document.getElementById("situationName").innerHTML = 'Loading ...';
 
             $('#labelFold').addClass('d-none');
             $('#labelCall').addClass('d-none');

@@ -27,6 +27,7 @@ class HandController extends Controller
 
         do {
             $randomHandNumber = rand(0, 270725);
+            $randomHandNumber = 30;
 
             $hand = Hand::find($randomHandNumber);
 
