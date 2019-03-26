@@ -21,4 +21,9 @@ class Situation extends Model
     {
         return $this->belongsToMany('App\Hand', 'hands_to_situations_to_actions')->withPivot('percentage');
     }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Answer');
+    }
 }

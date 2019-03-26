@@ -75,7 +75,7 @@
                     </li>
                     <p><b>Statistics</b></p>
                     <li>
-                        <a href="#">View statistics</a>
+                        <a href="{{ route('showStatistics') }}">View statistics</a>
                     </li>
                     @endguest
                 </ul>

@@ -37,3 +37,5 @@ Route::get('/deleteSituation/{id}', 'SituationController@deleteSituation')->name
 
 Route::get('/selectSituationsTraining', 'SituationController@selectSituationTraining')->name('selectSituationsTraining');
 
+Route::get('/showStatistics', 'StatisticsController@showStatistics')->name('showStatistics');
+
