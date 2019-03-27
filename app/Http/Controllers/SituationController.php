@@ -111,7 +111,7 @@ class SituationController extends Controller
 
         ChangeSituationStatus::dispatch($situation, 1);
 
-        Mail::to("rehabfox1@yahoo.de")
+        Mail::to("jacknineofclubs@googlemail.com")
             ->queue(new JobsFinished($situation));
 
         return view('createSituation', ['success' => 'Files will be processed.']);
