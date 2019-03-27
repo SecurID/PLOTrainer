@@ -26,6 +26,7 @@
 <body>
     <div id="app">
             <!-- Sidebar -->
+            <button id="buttonNavbar" class="btn btn-block btn-dark">Menu</button>
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <h3>PLO Trainer</h3>
@@ -94,6 +95,24 @@
             @yield('content')
         </div>
     </div>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+    </script>
+    <script>
+        jQuery(document).ready(function() {
+            jQuery('#buttonNavbar').click(function (e) {
+                e.preventDefault();
+                if(document.getElementById('sidebar').style.display == "block") {
+                    document.getElementById('sidebar').style.cssText = "display:none !important";
+                    document.getElementById('content').style.cssText = "display:block !important";
+                }else{
+                    document.getElementById('sidebar').style.cssText = "display:block !important";
+                    document.getElementById('content').style.cssText = "display:none !important";
+                }
+            });
+        })
+    </script>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->

@@ -18,9 +18,16 @@
     max-width: 250px;
     min-height: 100vh;
 }
+#buttonNavbar{
+    display: none;
+}
 @media (max-width: 768px) {
     #sidebar {
         display: none !important;
+    }
+    #buttonNavbar{
+        display: block;
+        margin-bottom: 10px;
     }
 }
 /*
