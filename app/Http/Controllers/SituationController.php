@@ -194,6 +194,22 @@ class SituationController extends Controller
         ]);
     }
 
+    /**
+     * Renames a situation
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function renameSituation(Request $request, $idSituation)
+    {
+        $situation = Situation::find($idSituation);
+        $situation->name = $request->input('newName');
+        $situation->save();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
 
 
 }

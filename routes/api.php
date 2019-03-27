@@ -22,3 +22,5 @@ Route::post('/answer', 'AnswerController@saveAnswer')->name('saveAnswer');
 Route::get('/processFile', 'AnswerController@processSpecificFile')->name('processSpecificFile');
 
 Route::get('/deleteSituation/{id}', 'SituationController@deleteSituation')->name('deleteSituation');
+
+Route::post('/renameSituation/{id}', 'SituationController@renameSituation')->name('renameSituation');

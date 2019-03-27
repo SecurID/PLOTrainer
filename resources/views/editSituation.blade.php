@@ -15,7 +15,7 @@
                     @endif
                     <ul class="list-group">
                         @foreach ($situations as $situation)
-                            <li class="list-group-item justify-content-between align-items-center d-flex" id="lisituation{{$situation->id}}">{{ $situation->name }}<button class="btn btn-danger" id="situation{{$situation->id}}">Delete</button></li>
+                            <li class="list-group-item justify-content-between align-items-center d-flex" id="lisituation{{$situation->id}}"><input type="text" class="form-control" id="situationName" value="{{ $situation->name }}"><button class="btn btn-warning" id="situationEdit{{$situation->id}}">Rename</button><button class="btn btn-danger" id="situation{{$situation->id}}">Delete</button></li>
                         @endforeach
                     </ul>
                 </div>
@@ -40,6 +40,24 @@ jQuery(document).ready(function() {
         jQuery.ajax({
             url: "{{ url('/deleteSituation/'.$situation->id) }}",
             method: 'get',
+            success: function (result) {
+                location.reload();
+            }
+        });
+    });
+    @endforeach
+    @foreach($situations as $situation)
+    jQuery('#situationEdit{{$situation->id}}').click(function (e) {
+        e.preventDefault();
+        jQuery.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            url: "{{ url('/renameSituation/'.$situation->id) }}",
+            method: 'get',
+            data: {
+                newName: jQuery('#situationName').val()
+            },
             success: function (result) {
                 location.reload();
             }

@@ -43,3 +43,4 @@ Route::get('/showStatistics', 'StatisticsController@showStatistics')->name('show
 
 Route::get('/showAllStatistics', 'StatisticsController@showAllStatistics')->name('showAllStatistics');
 
+Route::get('/renameSituation/{id}', 'SituationController@renameSituation')->name('renameSituation');
