@@ -29,6 +29,8 @@ Route::get('/selectSituations', 'SituationController@selectSituation')->name('se
 
 Route::get('/randomSituations', 'SituationController@randomSituation')->name('randomSituation');
 
+Route::get('/randomSituationsAdmin', 'SituationController@randomSituationAdmin')->name('randomSituationAdmin');
+
 Route::get('/getHand', 'HandController@getHand')->name('getHand');
 
 Route::get('/getHandSituations', 'HandController@getHandSituations')->name('getHandSituations');
@@ -38,4 +40,6 @@ Route::get('/deleteSituation/{id}', 'SituationController@deleteSituation')->name
 Route::get('/selectSituationsTraining', 'SituationController@selectSituationTraining')->name('selectSituationsTraining');
 
 Route::get('/showStatistics', 'StatisticsController@showStatistics')->name('showStatistics');
+
+Route::get('/showAllStatistics', 'StatisticsController@showAllStatistics')->name('showAllStatistics');
 

@@ -66,6 +66,10 @@
                     <li>
                         <a href="{{ route('selectSituation') }}">Choose Situations</a>
                     </li>
+                    @if(Auth::user()->admin == 1)
+                    <li>
+                        <a href="{{ route('randomSituationAdmin') }}">Random Situation Admin</a>
+                    </li>
                     <p><b>Settings</b></p>
                     <li>
                         <a href="{{ route('createSituation') }}">Create new Situation</a>
@@ -73,10 +77,16 @@
                     <li>
                         <a href="{{ route('editSituation') }}">Edit Situation</a>
                     </li>
+                    @endif
                     <p><b>Statistics</b></p>
                     <li>
-                        <a href="{{ route('showStatistics') }}">View statistics</a>
+                        <a href="{{ route('showStatistics') }}">View my statistics</a>
                     </li>
+                    @if(Auth::user()->admin == 1)
+                    <li>
+                        <a href="{{ route('showAllStatistics') }}">View all statistics</a>
+                    </li>
+                    @endif
                     @endguest
                 </ul>
             </nav>

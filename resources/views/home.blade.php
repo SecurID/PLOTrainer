@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    #TODO: Show Basic Statistics in Dashboard
+                    Welcome to the PLOTrainer Application!
                 </div>
             </div>
         </div>

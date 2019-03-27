@@ -167,6 +167,18 @@ class SituationController extends Controller
     }
 
     /**
+     * Show the select Admin Situation Page
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function randomSituationAdmin()
+    {
+        $user = Auth::user();
+
+        return view('randomSituationAdmin', ['user_id' => $user->id]);
+    }
+
+    /**
      * Deletes a situation
      *
      * @return \Illuminate\Contracts\Support\Renderable
