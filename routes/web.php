@@ -17,6 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/createUser', 'UserController@showCreateUser')->name('showCreateUser');
+
+Route::post('/createUser', 'UserController@createUser')->name('createUser');
+
+Route::get('/showUsers', 'UserController@showUsers')->name('showUsers');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/createSituation', 'SituationController@showCreateSituation')->name('createSituation');
@@ -44,3 +50,5 @@ Route::get('/showStatistics', 'StatisticsController@showStatistics')->name('show
 Route::get('/showAllStatistics', 'StatisticsController@showAllStatistics')->name('showAllStatistics');
 
 Route::get('/renameSituation/{id}', 'SituationController@renameSituation')->name('renameSituation');
+
+Route::get('/deleteUser/{id}', 'UserController@deleteUser')->name('deleteUser');
