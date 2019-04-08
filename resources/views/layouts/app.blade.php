@@ -87,6 +87,9 @@
                     <li>
                         <a href="{{ route('showAllStatistics') }}">View all statistics</a>
                     </li>
+                    <li>
+                        <a href="{{ route('showUserStatisticsView') }}">View user statistics</a>
+                    </li>
                     <p><b>UserManagement</b></p>
                     <li>
                         <a href="{{ route('showCreateUser') }}">Create User</a>

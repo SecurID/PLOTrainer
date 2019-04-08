@@ -49,6 +49,10 @@ Route::get('/showStatistics', 'StatisticsController@showStatistics')->name('show
 
 Route::get('/showAllStatistics', 'StatisticsController@showAllStatistics')->name('showAllStatistics');
 
+Route::get('/showUserStatistics', 'StatisticsController@showUserStatisticsView')->name('showUserStatisticsView');
+
+Route::get('/userStatistics/{id}', 'StatisticsController@getUserStatistic')->name('getUserStatistic');
+
 Route::get('/renameSituation/{id}', 'SituationController@renameSituation')->name('renameSituation');
 
 Route::get('/deleteUser/{id}', 'UserController@deleteUser')->name('deleteUser');

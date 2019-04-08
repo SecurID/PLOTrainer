@@ -70,6 +70,7 @@ class StatisticsController extends Controller
 
         return view('statistics', ['situations' => $situations]);
     }
+
     /**
      * Show the statistics Page
      *
@@ -125,5 +126,64 @@ class StatisticsController extends Controller
         }
 
         return view('statistics', ['situations' => $situations]);
+    }
+
+    public function showUserStatisticsView(){
+        $users = User::all();
+
+        return view('statisticsUser', ['users' => $users]);
+    }
+
+    /**
+     * Returns Statistics for User
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function getUserStatistic($idUser)
+    {
+
+        $situationsAll = Situation::all()->where('active', '=', 1);
+        $situations = [];
+        $i = 0;
+
+        foreach($situationsAll as $situationAll){
+            $situations[$i]['name'] = $situationAll->name;
+            $situations[$i]['sumAnswers'] = DB::table('answers')
+                ->where('situation_id', '=', $situationAll->id)
+                ->where('user_id', '=', $idUser)
+                ->count();
+            if($situations[$i]['sumAnswers'] > 0) {
+                $lastAnswer = DB::table('answers')
+                    ->where('situation_id', '=', $situationAll->id)
+                    ->where('user_id', '=', $idUser)
+                    ->oldest()
+                    ->first();
+                $situations[$i]['lastAnswer'] = $lastAnswer->created_at;
+            }else{
+                $situations[$i]['lastAnswer'] = 'No Answer';
+            }
+            $answers = DB::table('answers')
+                ->where('situation_id', '=', $situationAll->id)
+                ->where('user_id', '=', $idUser)
+                ->get();
+            $correctCount = 0;
+            foreach($answers as $answer){
+                if($answer->correct == "true"){
+                    $correctCount++;
+                }
+            }
+
+            if($situations[$i]['sumAnswers'] > 0) {
+                $situations[$i]['correctAnswers'] = round($correctCount / $situations[$i]['sumAnswers'] * 100, 0);
+            }else{
+                $situations[$i]['correctAnswers'] = 0;
+            }
+
+
+            $i++;
+
+        }
+
+        return response()->json(['situations' => $situations]);
     }
 }
