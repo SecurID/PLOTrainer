@@ -59,7 +59,7 @@
                 success: function (result) {
                     var i = 1;
                     result.situations.forEach(function(element){
-                        $('#statisticsTable').append('<tr><td>'+i+'</td><td>'+element.name+'</td><td>'+element.correctAnswers+'</td><td>'+element.sumAnswers+'</td><td>'+element.lastAnswer+'</td></tr>')
+                        $('#statisticsTable').append('<tr><td>'+i+'</td><td>'+element.name+'</td><td>'+element.correctAnswers+'%</td><td>'+element.sumAnswers+'</td><td>'+element.lastAnswer+'</td></tr>')
                         i++;
                     })
                 }
