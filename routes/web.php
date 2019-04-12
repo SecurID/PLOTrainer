@@ -55,4 +55,6 @@ Route::get('/userStatistics/{id}', 'StatisticsController@getUserStatistic')->nam
 
 Route::get('/renameSituation/{id}', 'SituationController@renameSituation')->name('renameSituation');
 
+Route::get('/onlyAdminSituation/{id}', 'SituationController@onlyAdminSituation')->name('onlyAdminSituation');
+
 Route::get('/deleteUser/{id}', 'UserController@deleteUser')->name('deleteUser');

@@ -136,7 +136,12 @@ class SituationController extends Controller
      */
     public function selectSituation()
     {
-        $situations = Situation::where('active', 1)->get();
+        $user = Auth::user();
+        if($user->admin == 0) {
+            $situations = Situation::where([['active', 1],['onlyAdmin', 0]])->get();
+        }else{
+            $situations = Situation::where('active', 1)->get();
+        }
 
         return view('selectSituation', ['situations' => $situations ]);
     }
@@ -210,6 +215,26 @@ class SituationController extends Controller
         ]);
     }
 
+    /**
+     * Renames a situation
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function onlyAdminSituation(Request $request, $idSituation)
+    {
+        $situation = Situation::find($idSituation);
+        if($request->input('value') == "true") {
+            $situation->onlyAdmin = 1;
+        }else{
+            $situation->onlyAdmin = 0;
+        }
+
+        $situation->save();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
 
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Hand;
 use App\Situation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HandController extends Controller
@@ -22,8 +23,13 @@ class HandController extends Controller
         $raisePercentage = 0;
         $handName = null;
         $flag = true;
+        $user = Auth::user();
 
-        $situation = Situation::inRandomOrder()->where('active', 1)->first();
+        if($user->admin == 0){
+            $situation = Situation::inRandomOrder()->where([['active', 1],['onlyAdmin', 0]])->first();
+        }else{
+            $situation = Situation::inRandomOrder()->where('active', 1)->first();
+        }
 
         do {
             $randomHandNumber = rand(0, 270725);
@@ -90,6 +96,7 @@ class HandController extends Controller
         $raisePercentage = 0;
         $handName = null;
         $flag = true;
+        $user = Auth::user();
 
         $situation = Situation::find($arraySituations)->shuffle();
         $situation = $situation[0];

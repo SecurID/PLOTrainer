@@ -15,7 +15,12 @@
                     @endif
                     <ul class="list-group">
                         @foreach ($situations as $situation)
-                            <li class="list-group-item justify-content-between align-items-center d-flex" id="lisituation{{$situation->id}}"><input type="text" class="form-control" id="situationName" value="{{ $situation->name }}"><button class="btn btn-warning" id="situationEdit{{$situation->id}}">Rename</button><button class="btn btn-danger" id="situation{{$situation->id}}">Delete</button></li>
+                            <li class="list-group-item justify-content-between align-items-center d-flex" id="lisituation{{$situation->id}}">
+                                <input type="text" class="form-control" id="situationName{{$situation->id}}" value="{{ $situation->name }}">
+                                <button class="btn btn-warning" id="situationEdit{{$situation->id}}">Rename</button>
+                                <button class="btn btn-danger" id="situation{{$situation->id}}">Delete</button>
+                                <input type="checkbox" @if ($situation->onlyAdmin == 1) checked="checked" @endif id="checkSituation{{$situation->id}}">Nur Admin?
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -56,7 +61,25 @@ jQuery(document).ready(function() {
             url: "{{ url('/renameSituation/'.$situation->id) }}",
             method: 'get',
             data: {
-                newName: jQuery('#situationName').val()
+                newName: jQuery('#situationName{{$situation->id}}').val()
+            },
+            success: function (result) {
+                location.reload();
+            }
+        });
+    });
+    @endforeach
+    @foreach($situations as $situation)
+    jQuery('#checkSituation{{$situation->id}}').click(function (e) {
+        e.preventDefault();
+        jQuery.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            url: "{{ url('/onlyAdminSituation/'.$situation->id) }}",
+            method: 'get',
+            data: {
+                value: jQuery('#checkSituation{{$situation->id}}').prop("checked")
             },
             success: function (result) {
                 location.reload();
