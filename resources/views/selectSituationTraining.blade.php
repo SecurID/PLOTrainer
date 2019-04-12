@@ -13,6 +13,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <form id="startTrainingForm" action="" enctype="multipart/form-data" method="POST">
+                        <div class="m-3 d-flex justify-content-center"><button class="btn btn-primary" id="startTraining">Start Training</button>
+                            {{ csrf_field() }}</div>
+                    </form>
                     <div class="d-none" id="showTask">
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
                             <div id="situationName"></div>
