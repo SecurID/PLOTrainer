@@ -62,15 +62,12 @@
                 <ul class="list-unstyled components">
                     <p><b>Training</b></p>
                     <li>
-                        <a href="{{ route('randomSituation') }}">Random Situations</a>
+                        <a href="{{ route('randomSituationAdmin') }}">Random Situations</a>
                     </li>
                     <li>
                         <a href="{{ route('selectSituation') }}">Choose Situations</a>
                     </li>
                     @if(Auth::user()->admin == 1)
-                    <li>
-                        <a href="{{ route('randomSituationAdmin') }}">Random Situation Admin</a>
-                    </li>
                     <p><b>Settings</b></p>
                     <li>
                         <a href="{{ route('createSituation') }}">Create new Situation</a>

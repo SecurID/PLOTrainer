@@ -56,218 +56,236 @@
 <script>
     var user_id = {{ $user_id }};
     jQuery(document).ready(function() {
-        $('#showTask').removeClass('d-none');
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
-        });
-        jQuery.ajax({
-            url: "{{ url('/getHandSituations') }}",
-            method: 'get',
-            data: {
-                @foreach ($situations as $situation)
+        jQuery('#startTraining').click(function (e) {
+            $('#startTrainingForm').addClass('d-none');
+            e.preventDefault();
+            $('#showTask').removeClass('d-none');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ url('/getHandSituations') }}",
+                method: 'get',
+                data: {
+                    @foreach ($situations as $situation)
                     {{$loop->index}}: {{ $situation }},
-                @endforeach
-            },
-            success: function (result) {
-                document.getElementById("card1").src = "{{ asset('assets/cards/') }}" + '/' + result.cardOne + '.png';
-                document.getElementById("card2").src = "{{ asset('assets/cards/') }}" + '/' + result.cardTwo + '.png';
-                document.getElementById("card3").src = "{{ asset('assets/cards/') }}" + '/' + result.cardThree + '.png';
-                document.getElementById("card4").src = "{{ asset('assets/cards/') }}" + '/' + result.cardFour + '.png';
-                document.getElementById("situationName").innerHTML = result.situationName;
-                document.getElementById("labelFold").innerHTML = result.foldPercentage + '%';
-                document.getElementById("labelCall").innerHTML = result.callPercentage + '%';
-                document.getElementById("labelRaise").innerHTML = result.raisePercentage + '%';
-            }
+                    @endforeach
+                },
+                success: function (result) {
+                    document.getElementById("card1").src = "{{ asset('assets/cards/') }}" + '/' + result.cardOne + '.png';
+                    document.getElementById("card2").src = "{{ asset('assets/cards/') }}" + '/' + result.cardTwo + '.png';
+                    document.getElementById("card3").src = "{{ asset('assets/cards/') }}" + '/' + result.cardThree + '.png';
+                    document.getElementById("card4").src = "{{ asset('assets/cards/') }}" + '/' + result.cardFour + '.png';
+                    document.getElementById("situationName").innerHTML = result.situationName;
+                    document.getElementById("labelFold").innerHTML = result.foldPercentage+'%';
+                    document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
+                    document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
+                }
+            });
         });
+        function newCards () {
+            document.getElementById("card1").src = "{{ asset('assets/cards/back.png') }}";
+            document.getElementById("card2").src = "{{ asset('assets/cards/back.png') }}";
+            document.getElementById("card3").src = "{{ asset('assets/cards/back.png') }}";
+            document.getElementById("card4").src = "{{ asset('assets/cards/back.png') }}";
+            document.getElementById("situationName").innerHTML = 'Loading ...';
 
-    jQuery('#next').click(function (e) {
-        e.preventDefault();
-
-        $('#labelFold').addClass('d-none');
-        $('#labelCall').addClass('d-none');
-        $('#labelRaise').addClass('d-none');
-        $('#next').addClass('d-none');
-        document.getElementById("call").disabled = false;
-        document.getElementById("raise").disabled = false;
-        document.getElementById("fold").disabled = false;
-        $("#raise").removeClass('active');
-        $("#fold").removeClass('active');
-        $("#call").removeClass('active');
-        $('#info').html('');
+            $('#labelFold').addClass('d-none');
+            $('#labelCall').addClass('d-none');
+            $('#labelRaise').addClass('d-none');
+            $('#next').addClass('d-none');
+            document.getElementById("call").disabled = false;
+            document.getElementById("raise").disabled = false;
+            document.getElementById("fold").disabled = false;
+            $("#raise").removeClass('active');
+            $("#fold").removeClass('active');
+            $("#call").removeClass('active');
+            $('#info').html('');
 
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ url('/getHandSituations') }}",
+                method: 'get',
+                data: {
+                    @foreach ($situations as $situation)
+                    {{$loop->index}}: {{ $situation }},
+                    @endforeach
+                },
+                success: function (result) {
+                    document.getElementById("card1").src = "{{ asset('assets/cards/') }}" + '/' + result.cardOne + '.png';
+                    document.getElementById("card2").src = "{{ asset('assets/cards/') }}" + '/' + result.cardTwo + '.png';
+                    document.getElementById("card3").src = "{{ asset('assets/cards/') }}" + '/' + result.cardThree + '.png';
+                    document.getElementById("card4").src = "{{ asset('assets/cards/') }}" + '/' + result.cardFour + '.png';
+                    document.getElementById("situationName").innerHTML = result.situationName;
+                    document.getElementById("labelFold").innerHTML = result.foldPercentage+'%';
+                    document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
+                    document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
+                }
+            });
+        };
+        jQuery('#fold').click(function (e) {
+            var correct = false;
+
+            e.preventDefault();
+            $('#labelFold').removeClass('d-none');
+            $('#labelCall').removeClass('d-none');
+            $('#labelRaise').removeClass('d-none');
+            document.getElementById("raise").disabled = true;
+            document.getElementById("call").disabled = true;
+            document.getElementById("fold").disabled = true;
+
+            if(document.getElementById("labelFold").innerHTML >= document.getElementById("labelRaise").innerHTML && document.getElementById("labelFold").innerHTML >= document.getElementById("labelCall").innerHTML){
+                correct = true;
+                $('#info').html('Correct');
+                $('#info').css('color', 'green');
+                $("#fold").css('opacity', '1');
+
+            }else{
+                if(document.getElementById("labelCall").innerHTML >= document.getElementById("labelRaise").innerHTML){
+                    $("#call").css('opacity', '1');
+                    $('#info').html('Wrong');
+                    $('#info').css('color', 'red');
+                }
+                if(document.getElementById("labelRaise").innerHTML >= document.getElementById("labelCall").innerHTML){
+                    $("#raise").css('opacity', '1');
+                    $('#info').html('Wrong');
+                    $('#info').css('color', 'red');
+                }
             }
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ url('/api/answer') }}",
+                method: 'post',
+                data: {
+                    situation_id: document.getElementById("situationName").innerHTML,
+                    user_id: user_id,
+                    correct: correct
+                },
+                success: function (result) {
+                    sleep(2000);
+                    newCards();
+                }
+            });
         });
-        jQuery.ajax({
-            url: "{{ url('/getHandSituations') }}",
-            method: 'get',
-            data: {
-                @foreach ($situations as $situation)
-                {{$loop->index}}: {{ $situation }},
-                @endforeach
-            },
-            success: function (result) {
-                document.getElementById("card1").src = "{{ asset('assets/cards/') }}" + '/' + result.cardOne + '.png';
-                document.getElementById("card2").src = "{{ asset('assets/cards/') }}" + '/' + result.cardTwo + '.png';
-                document.getElementById("card3").src = "{{ asset('assets/cards/') }}" + '/' + result.cardThree + '.png';
-                document.getElementById("card4").src = "{{ asset('assets/cards/') }}" + '/' + result.cardFour + '.png';
-                document.getElementById("situationName").innerHTML = result.situationName;
-                document.getElementById("labelFold").innerHTML = result.foldPercentage+'%';
-                document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
-                document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
-            }
-        });
-    });
-    jQuery('#fold').click(function (e) {
-        var correct = false;
+        jQuery('#raise').click(function (e) {
+            var correct = false;
 
-        e.preventDefault();
-        $('#labelFold').removeClass('d-none');
-        $('#labelCall').removeClass('d-none');
-        $('#labelRaise').removeClass('d-none');
-        document.getElementById("raise").disabled = true;
-        document.getElementById("call").disabled = true;
-        document.getElementById("fold").disabled = true;
+            e.preventDefault();
+            $('#labelFold').removeClass('d-none');
+            $('#labelCall').removeClass('d-none');
+            $('#labelRaise').removeClass('d-none');
+            document.getElementById("raise").disabled = true;
+            document.getElementById("call").disabled = true;
+            document.getElementById("fold").disabled = true;
 
-        if(document.getElementById("labelFold").innerHTML >= document.getElementById("labelRaise").innerHTML && document.getElementById("labelFold").innerHTML >= document.getElementById("labelCall").innerHTML){
-            correct = true;
-            $('#info').html('Correct');
-            $('#info').css('color', 'green');
-            $("#fold").css('opacity', '1');
-
-        }else{
-            if(document.getElementById("labelCall").innerHTML >= document.getElementById("labelRaise").innerHTML){
-                $("#call").css('opacity', '1');
-                $('#info').html('Wrong');
-                $('#info').css('color', 'red');
-            }
-            if(document.getElementById("labelRaise").innerHTML >= document.getElementById("labelCall").innerHTML){
+            if(document.getElementById("labelRaise").innerHTML >= document.getElementById("labelFold").innerHTML && document.getElementById("labelRaise").innerHTML >=document.getElementById("labelCall").innerHTML){
+                correct = true;
+                $('#info').html('Correct');
+                $('#info').css('color', 'green');
                 $("#raise").css('opacity', '1');
-                $('#info').html('Wrong');
-                $('#info').css('color', 'red');
+            }else{
+                if(document.getElementById("labelCall").innerHTML >= document.getElementById("labelFold").innerHTML){
+                    $("#call").css('opacity', '1');
+                    $('#info').html('Wrong');
+                    $('#info').css('color', 'red');
+                }
+                if(document.getElementById("labelFold").innerHTML >= document.getElementById("labelCall").innerHTML){
+                    $("#fold").css('opacity', '1');
+                    $('#info').html('Wrong');
+                    $('#info').css('color', 'red');
+                }
             }
-        }
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ url('/api/answer') }}",
+                method: 'post',
+                data: {
+                    situation_id: document.getElementById("situationName").innerHTML,
+                    user_id: user_id,
+                    correct: correct
+                },
+                success: function (result) {
+                    sleep(2000);
+                    newCards();
+                }
+            });
         });
-        jQuery.ajax({
-            url: "{{ url('/api/answer') }}",
-            method: 'post',
-            data: {
-                situation_id: document.getElementById("situationName").innerHTML,
-                user_id: user_id,
-                correct: correct
-            },
-            success: function (result) {
-                $('#next').removeClass('d-none');
-            }
-        });
-    });
-    jQuery('#raise').click(function (e) {
-        var correct = false;
+        jQuery('#call').click(function (e) {
+            var correct = false;
 
-        e.preventDefault();
-        $('#labelFold').removeClass('d-none');
-        $('#labelCall').removeClass('d-none');
-        $('#labelRaise').removeClass('d-none');
-        document.getElementById("raise").disabled = true;
-        document.getElementById("call").disabled = true;
-        document.getElementById("fold").disabled = true;
+            document.getElementById("raise").disabled = true;
+            document.getElementById("call").disabled = true;
+            document.getElementById("fold").disabled = true;
 
-        if(document.getElementById("labelRaise").innerHTML >= document.getElementById("labelFold").innerHTML && document.getElementById("labelRaise").innerHTML >=document.getElementById("labelCall").innerHTML){
-            correct = true;
-            $('#info').html('Correct');
-            $('#info').css('color', 'green');
-            $("#raise").css('opacity', '1');
-        }else{
-            if(document.getElementById("labelCall").innerHTML >= document.getElementById("labelFold").innerHTML){
+            if(document.getElementById("labelCall").innerHTML >= document.getElementById("labelFold").innerHTML && document.getElementById("labelCall").innerHTML >= document.getElementById("labelRaise").innerHTML){
+                correct = true;
+                $('#info').html('Correct');
+                $('#info').css('color', 'green');
                 $("#call").css('opacity', '1');
-                $('#info').html('Wrong');
-                $('#info').css('color', 'red');
+            }else{
+                if(document.getElementById("labelRaise").innerHTML >= document.getElementById("labelFold").innerHTML){
+                    $("#call").css('opacity', '1');
+                    $('#info').html('Wrong');
+                    $('#info').css('color', 'red');
+                }
+                if(document.getElementById("labelFold").innerHTML >= document.getElementById("labelRaise").innerHTML){
+                    $("#fold").css('opacity', '1');
+                    $('#info').html('Wrong');
+                    $('#info').css('color', 'red');
+                }
             }
-            if(document.getElementById("labelFold").innerHTML >= document.getElementById("labelCall").innerHTML){
-                $("#fold").css('opacity', '1');
-                $('#info').html('Wrong');
-                $('#info').css('color', 'red');
+
+            e.preventDefault();
+            $('#labelFold').removeClass('d-none');
+            $('#labelCall').removeClass('d-none');
+            $('#labelRaise').removeClass('d-none');
+
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ url('/api/answer') }}",
+                method: 'post',
+                data: {
+                    situation_id: document.getElementById("situationName").innerHTML,
+                    user_id: user_id,
+                    correct: correct
+                },
+                success: function (result) {
+                    sleep(2000);
+                    newCards();
+                }
+            });
+        });
+        function sleep(milliseconds) {
+            var start = new Date().getTime();
+            for (var i = 0; i < 1e7; i++) {
+                if ((new Date().getTime() - start) > milliseconds){
+                    break;
+                }
             }
         }
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
-        });
-        jQuery.ajax({
-            url: "{{ url('/api/answer') }}",
-            method: 'post',
-            data: {
-                situation_id: document.getElementById("situationName").innerHTML,
-                user_id: user_id,
-                correct: correct
-            },
-            success: function (result) {
-                $('#next').removeClass('d-none');
-            }
-        });
-    });
-    jQuery('#call').click(function (e) {
-        var correct = false;
-
-        document.getElementById("raise").disabled = true;
-        document.getElementById("call").disabled = true;
-        document.getElementById("fold").disabled = true;
-
-        if(document.getElementById("labelCall").innerHTML >= document.getElementById("labelFold").innerHTML && document.getElementById("labelCall").innerHTML >= document.getElementById("labelRaise").innerHTML){
-            correct = true;
-            $('#info').html('Correct');
-            $('#info').css('color', 'green');
-            $("#call").css('opacity', '1');
-        }else{
-            if(document.getElementById("labelRaise").innerHTML >= document.getElementById("labelFold").innerHTML){
-                $("#call").css('opacity', '1');
-                $('#info').html('Wrong');
-                $('#info').css('color', 'red');
-            }
-            if(document.getElementById("labelFold").innerHTML >= document.getElementById("labelRaise").innerHTML){
-                $("#fold").css('opacity', '1');
-                $('#info').html('Wrong');
-                $('#info').css('color', 'red');
-            }
-        }
-
-        e.preventDefault();
-        $('#labelFold').removeClass('d-none');
-        $('#labelCall').removeClass('d-none');
-        $('#labelRaise').removeClass('d-none');
-
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
-        });
-        jQuery.ajax({
-            url: "{{ url('/api/answer') }}",
-            method: 'post',
-            data: {
-                situation_id: document.getElementById("situationName").innerHTML,
-                user_id: user_id,
-                correct: correct
-            },
-            success: function (result) {
-                $('#next').removeClass('d-none');
-            }
-        });
-    });
-    });
+    })
 
 </script>
 @endsection
