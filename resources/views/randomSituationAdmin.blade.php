@@ -57,6 +57,7 @@
 </script>
 <script>
     var user_id = {{ $user_id }};
+    var handId = 0;
     jQuery(document).ready(function() {
         jQuery('#startTraining').click(function (e) {
             $('#startTrainingForm').addClass('d-none');
@@ -79,6 +80,7 @@
                     document.getElementById("labelFold").innerHTML = result.foldPercentage+'%';
                     document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
                     document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
+                    handId = result.handId;
                 }
             });
         });
@@ -119,6 +121,7 @@
                     document.getElementById("labelFold").innerHTML = result.foldPercentage+'%';
                     document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
                     document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
+                    handId = result.handId;
                 }
             });
         };
@@ -163,7 +166,8 @@
                 data: {
                     situation_id: document.getElementById("situationName").innerHTML,
                     user_id: user_id,
-                    correct: correct
+                    correct: correct,
+                    handId: handId,
                 },
                 success: function (result) {
                     sleep(2000);
@@ -211,7 +215,8 @@
                 data: {
                     situation_id: document.getElementById("situationName").innerHTML,
                     user_id: user_id,
-                    correct: correct
+                    correct: correct,
+                    handId: handId,
                 },
                 success: function (result) {
                     sleep(2000);
@@ -261,7 +266,8 @@
                 data: {
                     situation_id: document.getElementById("situationName").innerHTML,
                     user_id: user_id,
-                    correct: correct
+                    correct: correct,
+                    handId: handId,
                 },
                 success: function (result) {
                     sleep(2000);

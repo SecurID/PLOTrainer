@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Selected Situations</div>
+                <div class="card-header">Incorrect Situations</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,9 +13,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
+
                     <form id="startTrainingForm" action="" enctype="multipart/form-data" method="POST">
                         <div class="m-3 d-flex justify-content-center"><button class="btn btn-primary" id="startTraining">Start Training</button>
-                            {{ csrf_field() }}</div>
+                        {{ csrf_field() }}</div>
                     </form>
                     <div class="d-none" id="showTask">
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
@@ -41,12 +42,9 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <p id="info" class="display-4"></p>
-                        </div>
-                        <div class="m-3 d-flex justify-content-center" style="margin-top: 50px;">
-                            <button class="btn btn-primary d-none" id="next">Next</button>
-                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <p id="info" class="display-4"></p>
                     </div>
                 </div>
             </div>
@@ -59,7 +57,7 @@
 </script>
 <script>
     var user_id = {{ $user_id }};
-    var handId = 0;
+    var answerId = 0;
     jQuery(document).ready(function() {
         jQuery('#startTraining').click(function (e) {
             $('#startTrainingForm').addClass('d-none');
@@ -71,23 +69,24 @@
                 }
             });
             jQuery.ajax({
-                url: "{{ url('/getHandSituations') }}",
+                url: "{{ url('/getHandIncorrect') }}",
                 method: 'get',
-                data: {
-                    @foreach ($situations as $situation)
-                    {{$loop->index}}: {{ $situation }},
-                    @endforeach
-                },
                 success: function (result) {
-                    document.getElementById("card1").src = "{{ asset('assets/cards/') }}" + '/' + result.cardOne + '.png';
-                    document.getElementById("card2").src = "{{ asset('assets/cards/') }}" + '/' + result.cardTwo + '.png';
-                    document.getElementById("card3").src = "{{ asset('assets/cards/') }}" + '/' + result.cardThree + '.png';
-                    document.getElementById("card4").src = "{{ asset('assets/cards/') }}" + '/' + result.cardFour + '.png';
-                    document.getElementById("situationName").innerHTML = result.situationName;
-                    document.getElementById("labelFold").innerHTML = result.foldPercentage+'%';
-                    document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
-                    document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
-                    handId = result.handId;
+                    if(result.noMoreHands === true){
+                        $('#info').html('No more Hands available');
+                        $('#info').css('color', 'red');
+                        $('#showTask').addClass('d-none');
+                    }else {
+                        document.getElementById("card1").src = "{{ asset('assets/cards/') }}" + '/' + result.cardOne + '.png';
+                        document.getElementById("card2").src = "{{ asset('assets/cards/') }}" + '/' + result.cardTwo + '.png';
+                        document.getElementById("card3").src = "{{ asset('assets/cards/') }}" + '/' + result.cardThree + '.png';
+                        document.getElementById("card4").src = "{{ asset('assets/cards/') }}" + '/' + result.cardFour + '.png';
+                        document.getElementById("situationName").innerHTML = result.situationName;
+                        document.getElementById("labelFold").innerHTML = result.foldPercentage + '%';
+                        document.getElementById("labelCall").innerHTML = result.callPercentage + '%';
+                        document.getElementById("labelRaise").innerHTML = result.raisePercentage + '%';
+                        answerId = result.answerId;
+                    }
                 }
             });
         });
@@ -117,23 +116,24 @@
                 }
             });
             jQuery.ajax({
-                url: "{{ url('/getHandSituations') }}",
+                url: "{{ url('/getHandIncorrect') }}",
                 method: 'get',
-                data: {
-                    @foreach ($situations as $situation)
-                    {{$loop->index}}: {{ $situation }},
-                    @endforeach
-                },
                 success: function (result) {
-                    document.getElementById("card1").src = "{{ asset('assets/cards/') }}" + '/' + result.cardOne + '.png';
-                    document.getElementById("card2").src = "{{ asset('assets/cards/') }}" + '/' + result.cardTwo + '.png';
-                    document.getElementById("card3").src = "{{ asset('assets/cards/') }}" + '/' + result.cardThree + '.png';
-                    document.getElementById("card4").src = "{{ asset('assets/cards/') }}" + '/' + result.cardFour + '.png';
-                    document.getElementById("situationName").innerHTML = result.situationName;
-                    document.getElementById("labelFold").innerHTML = result.foldPercentage+'%';
-                    document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
-                    document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
-                    handId = result.handId;
+                    if(result.noMoreHands === true){
+                        $('#info').html('No more Hands available');
+                        $('#info').css('color', 'red');
+                        $('#showTask').addClass('d-none');
+                    }else {
+                        document.getElementById("card1").src = "{{ asset('assets/cards/') }}" + '/' + result.cardOne + '.png';
+                        document.getElementById("card2").src = "{{ asset('assets/cards/') }}" + '/' + result.cardTwo + '.png';
+                        document.getElementById("card3").src = "{{ asset('assets/cards/') }}" + '/' + result.cardThree + '.png';
+                        document.getElementById("card4").src = "{{ asset('assets/cards/') }}" + '/' + result.cardFour + '.png';
+                        document.getElementById("situationName").innerHTML = result.situationName;
+                        document.getElementById("labelFold").innerHTML = result.foldPercentage + '%';
+                        document.getElementById("labelCall").innerHTML = result.callPercentage + '%';
+                        document.getElementById("labelRaise").innerHTML = result.raisePercentage + '%';
+                        answerId = result.answerId;
+                    }
                 }
             });
         };
@@ -173,13 +173,13 @@
                 }
             });
             jQuery.ajax({
-                url: "{{ url('/api/answer') }}",
+                url: "{{ url('/api/answerIncorrect') }}",
                 method: 'post',
                 data: {
                     situation_id: document.getElementById("situationName").innerHTML,
                     user_id: user_id,
                     correct: correct,
-                    handId: handId,
+                    answerId: answerId,
                 },
                 success: function (result) {
                     sleep(2000);
@@ -222,13 +222,13 @@
                 }
             });
             jQuery.ajax({
-                url: "{{ url('/api/answer') }}",
+                url: "{{ url('/api/answerIncorrect') }}",
                 method: 'post',
                 data: {
                     situation_id: document.getElementById("situationName").innerHTML,
                     user_id: user_id,
                     correct: correct,
-                    handId: handId,
+                    answerId: answerId,
                 },
                 success: function (result) {
                     sleep(2000);
@@ -273,13 +273,13 @@
                 }
             });
             jQuery.ajax({
-                url: "{{ url('/api/answer') }}",
+                url: "{{ url('/api/answerIncorrect') }}",
                 method: 'post',
                 data: {
                     situation_id: document.getElementById("situationName").innerHTML,
                     user_id: user_id,
                     correct: correct,
-                    handId: handId,
+                    answerId: answerId,
                 },
                 success: function (result) {
                     sleep(2000);

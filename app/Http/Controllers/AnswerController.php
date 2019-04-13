@@ -30,7 +30,25 @@ class AnswerController extends Controller
         $answer->user_id = $id = $request->user_id;
         $answer->correct = $request->correct;
         $answer->situation_id = $situation->id;
+        $answer->handId = $request->handId;
 
+        $answer->save();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    /**
+     * Save Answer
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function saveAnswerIncorrect(Request $request)
+    {
+
+        $answer = Answer::find($request->answerId);
+        $answer->correct = $request->correct;
         $answer->save();
 
         return response()->json([

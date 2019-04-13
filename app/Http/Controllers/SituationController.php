@@ -236,5 +236,43 @@ class SituationController extends Controller
         ]);
     }
 
+    /**
+     * Show the option Situation Page
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function optionSituations()
+    {
+        return view('optionSituation');
+    }
+
+    /**
+     * Show the select Situation Page
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function optionSituationsTraining(Request $request)
+    {
+        $foldPercentage = $request->input('inputFold');
+        $callPercentage = $request->input('inputCall');
+        $raisePercentage = $request->input('inputRaise');
+
+        $user = Auth::user();
+
+
+        return view('optionSituationTraining', ['foldPercentage' => $foldPercentage, 'callPercentage' => $callPercentage, 'raisePercentage' => $raisePercentage, 'user_id' => $user->id]);
+    }
+
+    /**
+     * Show the incorrect Mode Page
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function showIncorrectMode()
+    {
+        $user = Auth::user();
+        return view('incorrectMode', ['user_id' => $user->id]);
+    }
+
 
 }

@@ -41,6 +41,10 @@ Route::get('/getHand', 'HandController@getHand')->name('getHand');
 
 Route::get('/getHandSituations', 'HandController@getHandSituations')->name('getHandSituations');
 
+Route::get('/getHandOptions', 'HandController@getHandOptions')->name('getHandOptions');
+
+Route::get('/getHandIncorrect', 'HandController@getHandIncorrect')->name('getHandIncorrect');
+
 Route::get('/deleteSituation/{id}', 'SituationController@deleteSituation')->name('deleteSituation');
 
 Route::get('/selectSituationsTraining', 'SituationController@selectSituationTraining')->name('selectSituationsTraining');
@@ -58,3 +62,11 @@ Route::get('/renameSituation/{id}', 'SituationController@renameSituation')->name
 Route::get('/onlyAdminSituation/{id}', 'SituationController@onlyAdminSituation')->name('onlyAdminSituation');
 
 Route::get('/deleteUser/{id}', 'UserController@deleteUser')->name('deleteUser');
+
+Route::get('/optionSituations', 'SituationController@optionSituations')->name('optionSituations');
+
+Route::get('/optionSituationsTraining', 'SituationController@optionSituationsTraining')->name('optionSituationsTraining');
+
+Route::get('/incorrectMode', 'SituationController@showIncorrectMode')->name('incorrectMode');
+
+

@@ -19,13 +19,13 @@
                     </form>
                     <div class="d-none" id="showTask">
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
-                            <div id="situationName">Loading ...</div>
+                            <div id="situationName"></div>
                         </div>
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
-                            <div><img id="card1" src="{{ asset('assets/cards/back.png') }}" width="50px" height="100px" style="float:left;"></div>
-                            <div><img id="card2" src="{{ asset('assets/cards/back.png') }}" width="50px" height="100px" style="float:left;"></div>
-                            <div><img id="card3" src="{{ asset('assets/cards/back.png') }}" width="50px" height="100px" style="float:left;"></div>
-                            <div><img id="card4" src="{{ asset('assets/cards/back.png') }}" width="50px" height="100px" ></div>
+                            <div><img id="card1" src="" width="50px" height="100px" style="float:left;"></div>
+                            <div><img id="card2" src="" width="50px" height="100px" style="float:left;"></div>
+                            <div><img id="card3" src="" width="50px" height="100px" style="float:left;"></div>
+                            <div><img id="card4" src="" width="50px" height="100px" ></div>
                         </div>
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
                             <button class="m-2 btn btn-danger btn-lg" id="fold">Fold</button>
@@ -59,7 +59,6 @@
 </script>
 <script>
     var user_id = {{ $user_id }};
-    var handId = 0;
     jQuery(document).ready(function() {
         jQuery('#startTraining').click(function (e) {
             $('#startTrainingForm').addClass('d-none');
@@ -71,12 +70,12 @@
                 }
             });
             jQuery.ajax({
-                url: "{{ url('/getHandSituations') }}",
+                url: "{{ url('/getHandOptions') }}",
                 method: 'get',
                 data: {
-                    @foreach ($situations as $situation)
-                    {{$loop->index}}: {{ $situation }},
-                    @endforeach
+                    FoldPercentage: {{$foldPercentage}},
+                    CallPercentage: {{$callPercentage}},
+                    RaisePercentage: {{$raisePercentage}},
                 },
                 success: function (result) {
                     document.getElementById("card1").src = "{{ asset('assets/cards/') }}" + '/' + result.cardOne + '.png';
@@ -87,7 +86,6 @@
                     document.getElementById("labelFold").innerHTML = result.foldPercentage+'%';
                     document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
                     document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
-                    handId = result.handId;
                 }
             });
         });
@@ -120,9 +118,9 @@
                 url: "{{ url('/getHandSituations') }}",
                 method: 'get',
                 data: {
-                    @foreach ($situations as $situation)
-                    {{$loop->index}}: {{ $situation }},
-                    @endforeach
+                    FoldPercentage: {{$foldPercentage}},
+                    CallPercentage: {{$callPercentage}},
+                    RaisePercentage: {{$raisePercentage}},
                 },
                 success: function (result) {
                     document.getElementById("card1").src = "{{ asset('assets/cards/') }}" + '/' + result.cardOne + '.png';
@@ -133,7 +131,6 @@
                     document.getElementById("labelFold").innerHTML = result.foldPercentage+'%';
                     document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
                     document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
-                    handId = result.handId;
                 }
             });
         };
@@ -178,8 +175,7 @@
                 data: {
                     situation_id: document.getElementById("situationName").innerHTML,
                     user_id: user_id,
-                    correct: correct,
-                    handId: handId,
+                    correct: correct
                 },
                 success: function (result) {
                     sleep(2000);
@@ -227,8 +223,7 @@
                 data: {
                     situation_id: document.getElementById("situationName").innerHTML,
                     user_id: user_id,
-                    correct: correct,
-                    handId: handId,
+                    correct: correct
                 },
                 success: function (result) {
                     sleep(2000);
@@ -278,8 +273,7 @@
                 data: {
                     situation_id: document.getElementById("situationName").innerHTML,
                     user_id: user_id,
-                    correct: correct,
-                    handId: handId,
+                    correct: correct
                 },
                 success: function (result) {
                     sleep(2000);

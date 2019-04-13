@@ -67,6 +67,12 @@
                     <li>
                         <a href="{{ route('selectSituation') }}">Choose Situations</a>
                     </li>
+                    <!--<li>
+                        <a href="">Option Situations</a>
+                    </li>-->
+                    <li>
+                        <a href="{{ route('incorrectMode') }}">Incorrect Mode</a>
+                    </li>
                     @if(Auth::user()->admin == 1)
                     <p><b>Settings</b></p>
                     <li>
