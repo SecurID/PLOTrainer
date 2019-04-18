@@ -61,6 +61,8 @@ Route::get('/renameSituation/{id}', 'SituationController@renameSituation')->name
 
 Route::get('/onlyAdminSituation/{id}', 'SituationController@onlyAdminSituation')->name('onlyAdminSituation');
 
+Route::get('/changePosition/{id}', 'SituationController@changePositionSituation')->name('changePosition');
+
 Route::get('/deleteUser/{id}', 'UserController@deleteUser')->name('deleteUser');
 
 Route::get('/optionSituations', 'SituationController@optionSituations')->name('optionSituations');

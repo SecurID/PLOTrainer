@@ -18,6 +18,9 @@
                             {{ csrf_field() }}</div>
                     </form>
                     <div class="d-none" id="showTask">
+                        <div id="showTable">
+                            <img id="table" src="{{ asset('assets/positions/placeholder.jpg') }}" width="100%" height="100%">
+                        </div>
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
                             <div id="situationName">Loading ...</div>
                         </div>
@@ -88,6 +91,7 @@
                     document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
                     document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
                     handId = result.handId;
+                    document.getElementById("table").src = "{{ asset('assets/positions') }}" + '/' + result.situationPosition + '.png';
                 }
             });
         });
@@ -96,6 +100,7 @@
             document.getElementById("card2").src = "{{ asset('assets/cards/back.png') }}";
             document.getElementById("card3").src = "{{ asset('assets/cards/back.png') }}";
             document.getElementById("card4").src = "{{ asset('assets/cards/back.png') }}";
+            document.getElementById("table").src = "{{ asset('assets/positions/placeholder.jpg') }}";
             document.getElementById("situationName").innerHTML = 'Loading ...';
 
             $('#labelFold').addClass('d-none');
@@ -134,6 +139,7 @@
                     document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
                     document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
                     handId = result.handId;
+                    document.getElementById("table").src = "{{ asset('assets/positions') }}" + '/' + result.situationPosition + '.png';
                 }
             });
         };

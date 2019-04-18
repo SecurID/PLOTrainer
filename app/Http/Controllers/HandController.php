@@ -25,6 +25,7 @@ class HandController extends Controller
         $handName = null;
         $flag = true;
         $user = Auth::user();
+        $situationPosition = null;
 
         if($user->admin == 0){
             $situation = Situation::inRandomOrder()->where([['active', 1],['onlyAdmin', 0]])->first();
@@ -52,6 +53,7 @@ class HandController extends Controller
             $situationName = $situation->name;
             $handName = $hand->hand;
             $handId = $hand->id;
+            $situationPosition = $situation->position;
 
             foreach($situations as $situation){
                 if($situation->Action == "Raise"){
@@ -70,6 +72,7 @@ class HandController extends Controller
 
         return response()->json([
             'handId' => $handId,
+            'situationPosition' => $situationPosition,
             'situationName' => $situationName,
             'cardOne' => $handSplitted[0],
             'cardTwo' => $handSplitted[1],
@@ -100,6 +103,7 @@ class HandController extends Controller
         $handName = null;
         $flag = true;
         $user = Auth::user();
+        $situationPosition = null;
 
         $situation = Situation::find($arraySituations)->shuffle();
         $situation = $situation[0];
@@ -124,6 +128,7 @@ class HandController extends Controller
             $situationName = $situation->name;
             $handName = $hand->hand;
             $handId = $hand->id;
+            $situationPosition = $situation->position;
 
             foreach($situations as $situation){
                 if($situation->Action == "Raise"){
@@ -143,6 +148,7 @@ class HandController extends Controller
         return response()->json([
             'handId' => $handId,
             'situationName' => $situationName,
+            'situationPosition' => $situationPosition,
             'cardOne' => $handSplitted[0],
             'cardTwo' => $handSplitted[1],
             'cardThree' => $handSplitted[2],
@@ -172,6 +178,7 @@ class HandController extends Controller
         $handName = null;
         $flag = true;
         $user = Auth::user();
+        $situationPosition = null;
 
         $situation = Situation::find($arraySituations)->shuffle();
         $situation = $situation[0];
@@ -195,6 +202,7 @@ class HandController extends Controller
 
             $situationName = $situation->name;
             $handName = $hand->hand;
+            $situationPosition = $situation->position;
 
             foreach($situations as $situation){
                 if($situation->Action == "Raise"){
@@ -213,6 +221,7 @@ class HandController extends Controller
 
         return response()->json([
             'situationName' => $situationName,
+            'situationPosition' => $situationPosition,
             'cardOne' => $handSplitted[0],
             'cardTwo' => $handSplitted[1],
             'cardThree' => $handSplitted[2],
@@ -237,6 +246,7 @@ class HandController extends Controller
         $handName = null;
         $flag = true;
         $user = Auth::user();
+        $situationPosition = null;
 
         $answer = Answer::where('user_id', '=', $user->id)->where('correct', '=', 'false')->inRandomOrder()->first();
 
@@ -265,6 +275,7 @@ class HandController extends Controller
 
             $situationName = $situation->name;
             $handName = $hand->hand;
+            $situationPosition = $situation->position;
 
             foreach($situations as $situation){
                 if($situation->Action == "Raise"){
@@ -284,6 +295,7 @@ class HandController extends Controller
         return response()->json([
             'answerId' => $answer->id,
             'situationName' => $situationName,
+            'situationPosition' => $situationPosition,
             'cardOne' => $handSplitted[0],
             'cardTwo' => $handSplitted[1],
             'cardThree' => $handSplitted[2],

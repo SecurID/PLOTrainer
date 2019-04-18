@@ -56,6 +56,7 @@ class SituationController extends Controller
         $situation = new Situation;
         $situation->name = $name;
         $situation->active = 0;
+        $situation->position = $request->input('positionSelect');
         $situation->save();
 
         if(null !== $request->file('rangeRaise')) {
@@ -272,6 +273,18 @@ class SituationController extends Controller
     {
         $user = Auth::user();
         return view('incorrectMode', ['user_id' => $user->id]);
+    }
+
+
+    public function changePositionSituation(Request $request, $situationId)
+    {
+        $situation = Situation::find($situationId);
+        $situation->position = $request->position;
+        $situation->save();
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 
 

@@ -32,6 +32,17 @@
                                 </label>
                             </p>
                             <p>
+                                Hero Position
+                                <select name="positionSelect" class="form-control" id="positionSelect">
+                                    <option value="utg">UTG</option>
+                                    <option value="mp">MP</option>
+                                    <option value="co">CO</option>
+                                    <option value="btn">BTN</option>
+                                    <option value="sb">SB</option>
+                                    <option value="bb">BB</option>
+                                </select>
+                            </p>
+                            <p>
                                 <label for="rangeRaise"> Raise
                                     <input type="file" class="form-control-file" name="rangeRaise" id="rangeRaise">
                                 </label>
