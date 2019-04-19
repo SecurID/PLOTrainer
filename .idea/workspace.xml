@@ -2,23 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d97abfb7-b2b2-40be-899b-02adbf80db84" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/positions/bb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/positions/btn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/positions/co.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/positions/mp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/positions/placeholder.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/positions/sb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/positions/utg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/beb2650c-5425-4af7-aede-0ea9b0ae80dc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/beb2650c-5425-4af7-aede-0ea9b0ae80dc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HandController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HandController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SituationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SituationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/createSituation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/createSituation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/editSituation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/editSituation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/incorrectMode.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/incorrectMode.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/randomSituationAdmin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/randomSituationAdmin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/selectSituationTraining.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/selectSituationTraining.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/optionSituation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/optionSituation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/optionSituationTraining.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/optionSituationTraining.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +46,13 @@
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="plotrainer@82.165.120.246" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="plotrainer: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="situations: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="plotrainer@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
@@ -70,6 +65,20 @@
         <item name="plotrainer@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="homestead: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="plotrainer@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="homestead: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="hands_to_situations_to_actions: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="plotrainer@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="homestead: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="situations: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -87,28 +96,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/selectSituationTraining.blade.php">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="102" column="101" selection-start-line="102" selection-start-column="101" selection-end-line="102" selection-end-column="101" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/randomSituationAdmin.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="96" column="101" lean-forward="true" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="101" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/incorrectMode.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="102" column="101" selection-start-line="102" selection-start-column="101" selection-end-line="102" selection-end-column="101" />
+            <state relative-caret-position="682">
+              <caret line="69" column="32" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -116,11 +107,68 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HandController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
+            <state relative-caret-position="472">
+              <caret line="190" lean-forward="true" selection-start-line="190" selection-end-line="190" />
               <folding>
                 <element signature="e#40#55#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://beb2650c-5425-4af7-aede-0ea9b0ae80dc/schema/homestead/table/hands_to_situations_to_actions">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="318">
+              <caret line="165" selection-start-line="165" selection-end-line="165" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/helpers.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="318">
+              <caret line="1022" selection-start-line="1022" selection-end-line="1022" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SituationController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="644">
+              <caret line="256" selection-start-line="256" selection-end-line="256" />
+              <folding>
+                <element signature="e#40#55#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/selectSituationTraining.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-100">
+              <caret line="187" column="35" lean-forward="true" selection-start-line="187" selection-start-column="20" selection-end-line="187" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/optionSituationTraining.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="558">
+              <caret line="285" column="35" selection-start-line="285" selection-start-column="35" selection-end-line="285" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -139,8 +187,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/beb2650c-5425-4af7-aede-0ea9b0ae80dc/console_2.sql" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/beb2650c-5425-4af7-aede-0ea9b0ae80dc/console_3.sql" />
         <option value="$PROJECT_DIR$/database/migrations/2019_03_06_114127_create_hands_to_situations_to_actions_table.php" />
         <option value="$PROJECT_DIR$/app/Hand.php" />
         <option value="$PROJECT_DIR$/app/Action.php" />
@@ -176,20 +222,22 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" />
         <option value="$PROJECT_DIR$/resources/views/statisticsUser.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/optiontSituationTraining.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/optionSituation.blade.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/beb2650c-5425-4af7-aede-0ea9b0ae80dc/console_8.sql" />
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AnswerController.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HandController.php" />
         <option value="$PROJECT_DIR$/resources/views/createSituation.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/editSituation.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SituationController.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/randomSituationAdmin.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/selectSituationTraining.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/incorrectMode.blade.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/29cb04bc-eb56-49d6-9fe8-fdda8fd54e81/console_2.sql" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SituationController.php" />
+        <option value="$PROJECT_DIR$/resources/views/optionSituation.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HandController.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/resources/views/optionSituationTraining.blade.php" />
       </list>
     </option>
   </component>
@@ -566,12 +614,12 @@
       <workItem from="1555097397371" duration="9596000" />
       <workItem from="1555236796056" duration="4000" />
       <workItem from="1555421594093" duration="796000" />
-      <workItem from="1555493288720" duration="2964000" />
+      <workItem from="1555493288720" duration="7540000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133949000" />
+    <option name="totallyTimeSpent" value="138525000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -593,11 +641,11 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32981133" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983845" weight="0.26113206" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983845" visible="true" weight="0.26037735" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32911393" />
-      <window_info anchor="bottom" id="Database Console" order="7" weight="0.3256617" />
+      <window_info anchor="bottom" id="Database Console" order="7" weight="0.32528302" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32971016" />
@@ -614,25 +662,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Authenticate.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/AuthServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/auth/register.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="565">
@@ -757,30 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://29cb04bc-eb56-49d6-9fe8-fdda8fd54e81/schema/plotrainer/table/situations">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/selectSituation.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/optionSituationTraining.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1211">
-          <caret line="122" column="58" selection-start-line="122" selection-start-column="58" selection-end-line="122" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/optionSituation.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="121" selection-start-line="41" selection-start-column="121" selection-end-line="41" selection-end-column="121" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/beb2650c-5425-4af7-aede-0ea9b0ae80dc/console_8.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -802,31 +807,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="98" selection-start-line="21" selection-start-column="98" selection-end-line="21" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://beb2650c-5425-4af7-aede-0ea9b0ae80dc/schema/homestead/table/answers">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://beb2650c-5425-4af7-aede-0ea9b0ae80dc/schema/homestead/table/hands_to_situations_to_actions">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="69" column="28" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -836,9 +820,6 @@
           <filtering enabled="true" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/positions/utg.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/positions/sb.png">
       <provider selected="true" editor-type-id="images" />
@@ -879,16 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SituationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1068">
-          <caret line="278" column="43" selection-start-line="278" selection-start-column="20" selection-end-line="278" selection-end-column="43" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/editSituation.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1038">
@@ -903,30 +874,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="63" column="103" selection-start-line="63" selection-start-column="103" selection-end-line="63" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HandController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/selectSituationTraining.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="102" column="101" selection-start-line="102" selection-start-column="101" selection-end-line="102" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/randomSituationAdmin.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="592">
@@ -934,10 +881,127 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/positions/utg.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/incorrectMode.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="102" column="101" selection-start-line="102" selection-start-column="101" selection-end-line="102" selection-end-column="101" />
+        <state relative-caret-position="422">
+          <caret line="165" column="45" lean-forward="true" selection-start-line="165" selection-start-column="45" selection-end-line="165" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://29cb04bc-eb56-49d6-9fe8-fdda8fd54e81/schema/plotrainer/table/situations">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://29cb04bc-eb56-49d6-9fe8-fdda8fd54e81/schema/plotrainer/table/actions">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="70" column="59" selection-start-line="70" selection-start-column="59" selection-end-line="70" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/29cb04bc-eb56-49d6-9fe8-fdda8fd54e81/console_2.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="56" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="98" selection-start-line="21" selection-start-column="98" selection-end-line="21" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="69" column="32" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="35" column="10" lean-forward="true" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="1022" selection-start-line="1022" selection-end-line="1022" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="165" selection-start-line="165" selection-end-line="165" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HandController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="190" lean-forward="true" selection-start-line="190" selection-end-line="190" />
+          <folding>
+            <element signature="e#40#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://beb2650c-5425-4af7-aede-0ea9b0ae80dc/schema/homestead/table/hands_to_situations_to_actions">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SituationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="256" selection-start-line="256" selection-end-line="256" />
+          <folding>
+            <element signature="e#40#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/selectSituation.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/optionSituation.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="22" lean-forward="true" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/selectSituationTraining.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-100">
+          <caret line="187" column="35" lean-forward="true" selection-start-line="187" selection-start-column="20" selection-end-line="187" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/optionSituationTraining.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="285" column="35" selection-start-line="285" selection-start-column="35" selection-end-line="285" selection-end-column="35" />
         </state>
       </provider>
     </entry>

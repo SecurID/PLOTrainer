@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Action;
 use App\Answer;
 use App\Hand;
 use App\Situation;
@@ -166,10 +167,8 @@ class HandController extends Controller
      */
     public function getHandOptions(Request $request)
     {
-        $situationId = $request->all();
-        foreach($situationId as $situation){
-            $arraySituations[] = $situation;
-        }
+        $minPercentage = $request->minPercentage;
+        $action = Action::where('name', '=', $request->action)->first();
 
         $situationName = null;
         $foldPercentage = 0;
@@ -180,16 +179,29 @@ class HandController extends Controller
         $user = Auth::user();
         $situationPosition = null;
 
-        $situation = Situation::find($arraySituations)->shuffle();
-        $situation = $situation[0];
+        $situations = DB::table('hands_to_situations_to_actions')
+            ->select('hands.hand AS Hand', 'situations.name AS Situation', 'actions.name AS Action', 'percentage AS Percentage', 'hands.id AS hand_id', 'situations.id AS situation_id')
+            ->where('hands_to_situations_to_actions.percentage', '>=', $minPercentage)
+            ->where('action_id', '=', $action->id)
+            ->join('actions', 'action_id', '=', 'actions.id')
+            ->join('hands', 'hand_id', '=', 'hands.id')
+            ->join('situations', 'situation_id', '=', 'situations.id')
+            ->inRandomOrder()
+            ->first();
 
-        do {
-            $randomHandNumber = rand(0, 270725);
+        $situation = Situation::find($situations->situation_id);
+        $hand = Hand::find($situations->hand_id);
 
-            $hand = Hand::find($randomHandNumber);
+        $situationName = $situation->name;
+        $handName = $hand->hand;
+        $situationPosition = $situation->position;
 
-            $situations = DB::table('hands_to_situations_to_actions')
-                ->select('hands.hand AS Hand', 'situations.name AS Situation', 'actions.name AS Action', 'percentage AS Percentage')
+        if($situations->Action == "Raise"){
+            $raisePercentage = $situations->Percentage;
+            $callAction = Action::where('name', '=', 'Call')->first();
+            $callEntry = DB::table('hands_to_situations_to_actions')
+                ->select('hands.hand AS Hand', 'situations.name AS Situation', 'actions.name AS Action', 'percentage AS Percentage', 'hands.id AS hand_id', 'situations.id AS situation_id')
+                ->where('action_id', '=', $callAction->id)
                 ->where('hand_id', '=', $hand->id)
                 ->where('situation_id', '=', $situation->id)
                 ->join('actions', 'action_id', '=', 'actions.id')
@@ -198,24 +210,107 @@ class HandController extends Controller
                 ->orderBy('hands.hand')
                 ->orderBy('situations.name')
                 ->orderBy('actions.name')
-                ->get();
-
-            $situationName = $situation->name;
-            $handName = $hand->hand;
-            $situationPosition = $situation->position;
-
-            foreach($situations as $situation){
-                if($situation->Action == "Raise"){
-                    $raisePercentage = $situation->Percentage;
-                }elseif($situation->Action == "Call"){
-                    $callPercentage = $situation->Percentage;
-                }elseif($situation->Action == "Fold"){
-                    $foldPercentage = $situation->Percentage;
-                }
-                $flag = false;
+                ->first();
+            if(isset($callEntry)){
+                $callPercentage = $callEntry->Percentage;
+            }else{
+                $callPercentage = 0;
             }
-
-        } while($flag);
+            $foldAction = Action::where('name', '=', 'Fold')->first();
+            $foldEntry = DB::table('hands_to_situations_to_actions')
+                ->select('hands.hand AS Hand', 'situations.name AS Situation', 'actions.name AS Action', 'percentage AS Percentage', 'hands.id AS hand_id', 'situations.id AS situation_id')
+                ->where('action_id', '=', $foldAction->id)
+                ->where('hand_id', '=', $hand->id)
+                ->where('situation_id', '=', $situation->id)
+                ->join('actions', 'action_id', '=', 'actions.id')
+                ->join('hands', 'hand_id', '=', 'hands.id')
+                ->join('situations', 'situation_id', '=', 'situations.id')
+                ->orderBy('hands.hand')
+                ->orderBy('situations.name')
+                ->orderBy('actions.name')
+                ->first();
+            if(isset($foldEntry)){
+                $foldPercentage = $foldEntry->Percentage;
+            }else{
+                $foldPercentage = 0;
+            }
+        }elseif($situations->Action == "Call"){
+            $callPercentage = $situations->Percentage;
+            $foldAction = Action::where('name', '=', 'Fold')->first();
+            $foldEntry = DB::table('hands_to_situations_to_actions')
+                ->select('hands.hand AS Hand', 'situations.name AS Situation', 'actions.name AS Action', 'percentage AS Percentage', 'hands.id AS hand_id', 'situations.id AS situation_id')
+                ->where('action_id', '=', $foldAction->id)
+                ->where('hand_id', '=', $hand->id)
+                ->where('situation_id', '=', $situation->id)
+                ->join('actions', 'action_id', '=', 'actions.id')
+                ->join('hands', 'hand_id', '=', 'hands.id')
+                ->join('situations', 'situation_id', '=', 'situations.id')
+                ->orderBy('hands.hand')
+                ->orderBy('situations.name')
+                ->orderBy('actions.name')
+                ->first();
+            if(isset($foldEntry)){
+                $foldPercentage = $foldEntry->Percentage;
+            }else{
+                $foldPercentage = 0;
+            }
+            $raiseAction = Action::where('name', '=', 'Raise')->first();
+            $raiseEntry = DB::table('hands_to_situations_to_actions')
+                ->select('hands.hand AS Hand', 'situations.name AS Situation', 'actions.name AS Action', 'percentage AS Percentage', 'hands.id AS hand_id', 'situations.id AS situation_id')
+                ->where('action_id', '=', $raiseAction->id)
+                ->where('hand_id', '=', $hand->id)
+                ->where('situation_id', '=', $situation->id)
+                ->join('actions', 'action_id', '=', 'actions.id')
+                ->join('hands', 'hand_id', '=', 'hands.id')
+                ->join('situations', 'situation_id', '=', 'situations.id')
+                ->orderBy('hands.hand')
+                ->orderBy('situations.name')
+                ->orderBy('actions.name')
+                ->first();
+            if(isset($raiseEntry)){
+                $raisePercentage = $raiseEntry->Percentage;
+            }else{
+                $raisePercentage = 0;
+            }
+        }elseif($situations->Action == "Fold"){
+            $foldPercentage = $situations->Percentage;
+            $callAction = Action::where('name', '=', 'Call')->first();
+            $callEntry = DB::table('hands_to_situations_to_actions')
+                ->select('hands.hand AS Hand', 'situations.name AS Situation', 'actions.name AS Action', 'percentage AS Percentage', 'hands.id AS hand_id', 'situations.id AS situation_id')
+                ->where('action_id', '=', $callAction->id)
+                ->where('hand_id', '=', $hand->id)
+                ->where('situation_id', '=', $situation->id)
+                ->join('actions', 'action_id', '=', 'actions.id')
+                ->join('hands', 'hand_id', '=', 'hands.id')
+                ->join('situations', 'situation_id', '=', 'situations.id')
+                ->orderBy('hands.hand')
+                ->orderBy('situations.name')
+                ->orderBy('actions.name')
+                ->first();
+            if(isset($callEntry)){
+                $callPercentage = $callEntry->Percentage;
+            }else{
+                $callPercentage = 0;
+            }
+            $raiseAction = Action::where('name', '=', 'Raise')->first();
+            $raiseEntry = DB::table('hands_to_situations_to_actions')
+                ->select('hands.hand AS Hand', 'situations.name AS Situation', 'actions.name AS Action', 'percentage AS Percentage', 'hands.id AS hand_id', 'situations.id AS situation_id')
+                ->where('action_id', '=', $raiseAction->id)
+                ->where('hand_id', '=', $hand->id)
+                ->where('situation_id', '=', $situation->id)
+                ->join('actions', 'action_id', '=', 'actions.id')
+                ->join('hands', 'hand_id', '=', 'hands.id')
+                ->join('situations', 'situation_id', '=', 'situations.id')
+                ->orderBy('hands.hand')
+                ->orderBy('situations.name')
+                ->orderBy('actions.name')
+                ->first();
+            if(isset($raiseEntry)){
+                $raisePercentage = $raiseEntry->Percentage;
+            }else{
+                $raisePercentage = 0;
+            }
+        }
 
         $handSplitted = str_split($handName,2);
 

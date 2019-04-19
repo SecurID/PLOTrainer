@@ -67,9 +67,9 @@
                     <li>
                         <a href="{{ route('selectSituation') }}">Choose Situations</a>
                     </li>
-                    <!--<li>
-                        <a href="">Option Situations</a>
-                    </li>-->
+                    <li>
+                        <a href="{{ route('optionSituations') }}">Option Situations</a>
+                    </li>
                     <li>
                         <a href="{{ route('incorrectMode') }}">Incorrect Mode</a>
                     </li>

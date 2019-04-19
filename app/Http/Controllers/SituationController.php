@@ -254,14 +254,13 @@ class SituationController extends Controller
      */
     public function optionSituationsTraining(Request $request)
     {
-        $foldPercentage = $request->input('inputFold');
-        $callPercentage = $request->input('inputCall');
-        $raisePercentage = $request->input('inputRaise');
+        $minPercentage = $request->input('inputOption');
+        $action = $request->input('selectAction');
 
         $user = Auth::user();
 
 
-        return view('optionSituationTraining', ['foldPercentage' => $foldPercentage, 'callPercentage' => $callPercentage, 'raisePercentage' => $raisePercentage, 'user_id' => $user->id]);
+        return view('optionSituationTraining', ['minPercentage' => $minPercentage, 'action' => $action, 'user_id' => $user->id]);
     }
 
     /**

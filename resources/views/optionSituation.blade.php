@@ -16,30 +16,17 @@
                         <form action="/optionSituationsTraining" enctype="multipart/form-data" method="GET">
                             <div class="form-row align-items-center d-flex justify-content-center">
                                 <div class="col-auto">
-                                    <label for="inputFold">Min. Fold Percentage</label>
+                                    <label for="inputOption">Min. Percentage</label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">%</div>
                                         </div>
-                                        <input type="number" class="form-control" id="inputFold" placeholder="20" min="0" max="100" required>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <label for="inputCall">Min. Call Percentage</label>
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">%</div>
-                                        </div>
-                                        <input type="number" class="form-control" id="inputCall" placeholder="20" min="0" max="100" required>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <label for="inputRaise">Min. Raise Percentage</label>
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">%</div>
-                                        </div>
-                                        <input type="number" class="form-control" id="inputRaise" placeholder="20" min="0" max="100" required>
+                                        <input type="number" class="form-control" id="inputOption" placeholder="20" min="0" max="100" required name="inputOption">
+                                        <select id="selectAction" name="selectAction">
+                                            <option value="Raise">Raise</option>
+                                            <option value="Call">Call</option>
+                                            <option value="Fold">Fold</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

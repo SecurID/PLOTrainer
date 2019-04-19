@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Selected Situations</div>
+                <div class="card-header">Option Situations</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,19 +13,22 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form id="startTrainingForm" action="" enctype="multipart/form-data" method="POST">
+                    <form id="startTrainingForm" action="" enctype="multipart/form-data" method="GET">
                         <div class="m-3 d-flex justify-content-center"><button class="btn btn-primary" id="startTraining">Start Training</button>
                             {{ csrf_field() }}</div>
                     </form>
                     <div class="d-none" id="showTask">
-                        <div class="d-flex justify-content-center" style="margin-top: 50px;">
-                            <div id="situationName"></div>
+                        <div id="showTable">
+                            <img id="table" src="{{ asset('assets/positions/placeholder.jpg') }}" width="100%" height="100%">
                         </div>
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
-                            <div><img id="card1" src="" width="50px" height="100px" style="float:left;"></div>
-                            <div><img id="card2" src="" width="50px" height="100px" style="float:left;"></div>
-                            <div><img id="card3" src="" width="50px" height="100px" style="float:left;"></div>
-                            <div><img id="card4" src="" width="50px" height="100px" ></div>
+                            <div id="situationName">Loading ...</div>
+                        </div>
+                        <div class="d-flex justify-content-center" style="margin-top: 50px;">
+                            <div><img id="card1" src="{{ asset('assets/cards/back.png') }}" width="50px" height="100px" style="float:left;"></div>
+                            <div><img id="card2" src="{{ asset('assets/cards/back.png') }}" width="50px" height="100px" style="float:left;"></div>
+                            <div><img id="card3" src="{{ asset('assets/cards/back.png') }}" width="50px" height="100px" style="float:left;"></div>
+                            <div><img id="card4" src="{{ asset('assets/cards/back.png') }}" width="50px" height="100px" ></div>
                         </div>
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
                             <button class="m-2 btn btn-danger btn-lg" id="fold">Fold</button>
@@ -59,6 +62,7 @@
 </script>
 <script>
     var user_id = {{ $user_id }};
+    var handId = 0;
     jQuery(document).ready(function() {
         jQuery('#startTraining').click(function (e) {
             $('#startTrainingForm').addClass('d-none');
@@ -73,9 +77,8 @@
                 url: "{{ url('/getHandOptions') }}",
                 method: 'get',
                 data: {
-                    FoldPercentage: {{$foldPercentage}},
-                    CallPercentage: {{$callPercentage}},
-                    RaisePercentage: {{$raisePercentage}},
+                    minPercentage: {{$minPercentage}},
+                    action: "{{$action}}",
                 },
                 success: function (result) {
                     document.getElementById("card1").src = "{{ asset('assets/cards/') }}" + '/' + result.cardOne + '.png';
@@ -86,6 +89,8 @@
                     document.getElementById("labelFold").innerHTML = result.foldPercentage+'%';
                     document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
                     document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
+                    handId = result.handId;
+                    document.getElementById("table").src = "{{ asset('assets/positions') }}" + '/' + result.situationPosition + '.png';
                 }
             });
         });
@@ -94,6 +99,7 @@
             document.getElementById("card2").src = "{{ asset('assets/cards/back.png') }}";
             document.getElementById("card3").src = "{{ asset('assets/cards/back.png') }}";
             document.getElementById("card4").src = "{{ asset('assets/cards/back.png') }}";
+            document.getElementById("table").src = "{{ asset('assets/positions/placeholder.jpg') }}";
             document.getElementById("situationName").innerHTML = 'Loading ...';
 
             $('#labelFold').addClass('d-none');
@@ -115,12 +121,11 @@
                 }
             });
             jQuery.ajax({
-                url: "{{ url('/getHandSituations') }}",
+                url: "{{ url('/getHandOptions') }}",
                 method: 'get',
                 data: {
-                    FoldPercentage: {{$foldPercentage}},
-                    CallPercentage: {{$callPercentage}},
-                    RaisePercentage: {{$raisePercentage}},
+                    minPercentage: {{$minPercentage}},
+                    action: "{{$action}}",
                 },
                 success: function (result) {
                     document.getElementById("card1").src = "{{ asset('assets/cards/') }}" + '/' + result.cardOne + '.png';
@@ -131,6 +136,8 @@
                     document.getElementById("labelFold").innerHTML = result.foldPercentage+'%';
                     document.getElementById("labelCall").innerHTML = result.callPercentage+'%';
                     document.getElementById("labelRaise").innerHTML = result.raisePercentage+'%';
+                    handId = result.handId;
+                    document.getElementById("table").src = "{{ asset('assets/positions') }}" + '/' + result.situationPosition + '.png';
                 }
             });
         };
@@ -175,7 +182,8 @@
                 data: {
                     situation_id: document.getElementById("situationName").innerHTML,
                     user_id: user_id,
-                    correct: correct
+                    correct: correct,
+                    handId: handId,
                 },
                 success: function (result) {
                     sleep(2000);
@@ -223,7 +231,8 @@
                 data: {
                     situation_id: document.getElementById("situationName").innerHTML,
                     user_id: user_id,
-                    correct: correct
+                    correct: correct,
+                    handId: handId,
                 },
                 success: function (result) {
                     sleep(2000);
@@ -273,7 +282,8 @@
                 data: {
                     situation_id: document.getElementById("situationName").innerHTML,
                     user_id: user_id,
-                    correct: correct
+                    correct: correct,
+                    handId: handId,
                 },
                 success: function (result) {
                     sleep(2000);
