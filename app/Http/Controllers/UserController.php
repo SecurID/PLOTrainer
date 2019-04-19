@@ -49,5 +49,26 @@ class UserController extends Controller
             'success' => true
         ]);
     }
+
+    /**
+     * Renames a situation
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function changeAdminStatus(Request $request, $idUser)
+    {
+        $user = User::find($idUser);
+        if($request->input('value') == "true") {
+            $user->admin = 1;
+        }else{
+            $user->admin = 0;
+        }
+
+        $user->save();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
 }
 

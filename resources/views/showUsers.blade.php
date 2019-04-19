@@ -15,7 +15,7 @@
                     @endif
                     <ul class="list-group">
                         @foreach ($users as $user)
-                            <li class="list-group-item justify-content-between align-items-center d-flex" id="lisituation{{$user->id}}">{{ $user->email }}<button class="btn btn-danger" id="situation{{$user->id}}">Delete</button></li>
+                            <li class="list-group-item justify-content-between align-items-center d-flex" id="lisituation{{$user->id}}">{{ $user->email }}<button class="btn btn-danger" id="situation{{$user->id}}">Delete</button><input type="checkbox" name="checkAdmin" id="checkAdmin{{$user->id}}" @if($user->admin == 1) checked="checked" @endif></li>
                         @endforeach
                     </ul>
                 </div>
@@ -40,6 +40,24 @@ jQuery(document).ready(function() {
         jQuery.ajax({
             url: "{{ url('/deleteUser/'.$user->id) }}",
             method: 'get',
+            success: function (result) {
+                location.reload();
+            }
+        });
+    });
+    @endforeach
+    @foreach($users as $user)
+    jQuery('#checkAdmin{{$user->id}}').click(function (e) {
+        e.preventDefault();
+        jQuery.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            url: "{{ url('/changeAdminStatus/'.$user->id) }}",
+            method: 'get',
+            data: {
+                value: jQuery('#checkAdmin{{$user->id}}').prop("checked")
+            },
             success: function (result) {
                 location.reload();
             }

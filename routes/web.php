@@ -71,4 +71,6 @@ Route::get('/optionSituationsTraining', 'SituationController@optionSituationsTra
 
 Route::get('/incorrectMode', 'SituationController@showIncorrectMode')->name('incorrectMode');
 
+Route::get('/changeAdminStatus/{id}', 'UserController@changeAdminStatus')->name('changeAdminStatus');
+
 
